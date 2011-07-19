@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Domain:</b>
+  <%= @domain.domain %>
+</p>
+
+<p><%= link_to 'Mailboxes', domain_mailboxes_path(@domain) %></p>
+
+<p><%= link_to 'Edit', edit_domain_path(@domain) %> |
+<%= link_to 'Back', domains_path %></p>
