@@ -1,4 +1,4 @@
-MailserverAdmin2::Application.routes.draw do
+IspmailAdmin::Application.routes.draw do
   resources :domains do
     resources :mailboxes
   end
