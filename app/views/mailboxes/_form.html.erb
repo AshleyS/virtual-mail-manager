@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :domain_id %><br />
-    <%= f.text_field :domain_id %>
+    <%= collection_select :mailbox, :domain_id, Domain.all, :id, :domain %>
   </div>
   <div class="field">
     <%= f.label :email %><br />
