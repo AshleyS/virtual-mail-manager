@@ -1,6 +1,8 @@
 class MailAliasesController < ApplicationController
+
+  before_filter :get_domain
+  
   def index
-    @domain = Domain.find(params[:domain_id])
     @mail_aliases = @domain.mail_aliases.all
 
     respond_to do |format|
@@ -10,7 +12,6 @@ class MailAliasesController < ApplicationController
   end
 
   def show
-    @domain = Domain.find(params[:domain_id])
     @mail_alias = @domain.mail_aliases.find(params[:id])
 
     respond_to do |format|
@@ -20,7 +21,6 @@ class MailAliasesController < ApplicationController
   end
 
   def new
-    @domain = Domain.find(params[:domain_id])
     @mail_alias = @domain.mail_aliases.build
 
     respond_to do |format|
@@ -30,12 +30,10 @@ class MailAliasesController < ApplicationController
   end
 
   def edit
-    @domain = Domain.find(params[:domain_id])
     @mail_alias = @domain.mail_aliases.find(params[:id])
   end
 
   def create
-    @domain = Domain.find(params[:domain_id])
     @mail_alias = @domain.mail_aliases.build(params[:mail_alias])
 
     respond_to do |format|
@@ -50,7 +48,6 @@ class MailAliasesController < ApplicationController
   end
 
   def update
-    @domain = Domain.find(params[:domain_id])
     @mail_alias = @domain.mail_aliases.find(params[:id])
 
     respond_to do |format|
@@ -65,7 +62,6 @@ class MailAliasesController < ApplicationController
   end
 
   def destroy
-    @domain = Domain.find(params[:domain_id])
     @mail_alias = @domain.mail_aliases.find(params[:id])
     @mail_alias.destroy
 
@@ -74,4 +70,11 @@ class MailAliasesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  private
+
+  def get_domain
+    @domain = Domain.find(params[:domain_id])
+  end
+
 end
