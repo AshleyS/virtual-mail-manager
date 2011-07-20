@@ -1,7 +1,6 @@
 class MailboxesController < ApplicationController
   def index
     @domain = Domain.find(params[:domain_id])
-    # @mailboxes = Mailbox.all
     @mailboxes = @domain.mailboxes.all
 
     respond_to do |format|
@@ -22,7 +21,6 @@ class MailboxesController < ApplicationController
 
   def new
     @domain = Domain.find(params[:domain_id])
-    # @mailbox = Mailbox.new
     @mailbox = @domain.mailboxes.build
 
     respond_to do |format|
@@ -33,7 +31,6 @@ class MailboxesController < ApplicationController
 
   def edit
     @domain = Domain.find(params[:domain_id])
-    # @mailbox = Mailbox.find(params[:id])
     @mailbox = @domain.mailboxes.find(params[:id])
   end
 

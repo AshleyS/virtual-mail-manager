@@ -5,7 +5,12 @@
   <%= @domain.domain %>
 </p>
 
-<p><%= link_to 'Mailboxes', domain_mailboxes_path(@domain) %></p>
+<p>
+  <%= link_to pluralize(@domain.mailboxes.size, 'mailbox'), domain_mailboxes_path(@domain) %> |
+  <%= link_to pluralize(@domain.mail_aliases.size, 'aliases'), domain_mail_aliases_path(@domain) %>
+</p>
 
-<p><%= link_to 'Edit', edit_domain_path(@domain) %> |
-<%= link_to 'Back', domains_path %></p>
+<p>
+  <%= link_to 'Edit', edit_domain_path(@domain) %> |
+  <%= link_to 'Back', domains_path %>
+</p>

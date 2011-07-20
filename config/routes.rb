@@ -1,6 +1,9 @@
 IspmailAdmin::Application.routes.draw do
+
+
   resources :domains do
     resources :mailboxes
+    resources :mail_aliases
   end
 
   root :to => "domains#index"

@@ -10,10 +10,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110719185459) do
+ActiveRecord::Schema.define(:version => 20110720112910) do
 
   create_table "domains", :force => true do |t|
     t.string   "domain"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "mail_aliases", :force => true do |t|
+    t.integer  "domain_id"
+    t.string   "source"
+    t.string   "destination"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,0 +1,30 @@
+<h1>Listing mail_aliases</h1>
+
+<p id="notice"><%= notice %></p>
+
+<table>
+  <tr>
+    <th>Domain</th>
+    <th>Source</th>
+    <th>Destination</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @mail_aliases.each do |mail_alias| %>
+  <tr>
+    <td><%= mail_alias.domain_id %></td>
+    <td><%= mail_alias.source %></td>
+    <td><%= mail_alias.destination %></td>
+    <td><%= link_to 'Show', domain_mail_alias_path(@domain, mail_alias) %></td>
+    <td><%= link_to 'Edit', edit_domain_mail_alias_path(@domain, mail_alias) %></td>
+    <td><%= link_to 'Destroy', [@domain, mail_alias], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Mail alias', new_domain_mail_alias_path %><br />
+<%= link_to 'Back to Domains', domains_path %>
