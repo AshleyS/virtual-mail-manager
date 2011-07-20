@@ -4,4 +4,4 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-IspmailAdmin::Application.load_tasks
+VirtualMailManager::Application.load_tasks

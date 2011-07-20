@@ -1,4 +1,4 @@
-IspmailAdmin::Application.routes.draw do
+VirtualMailManager::Application.routes.draw do
 
 
   resources :domains do
