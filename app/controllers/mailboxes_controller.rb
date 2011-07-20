@@ -1,6 +1,6 @@
 class MailboxesController < ApplicationController
 
-  before_filter :get_domain
+  before_filter :get_domain, :_add_crumbs
 
   def index
     @mailboxes = @domain.mailboxes.all
@@ -22,6 +22,7 @@ class MailboxesController < ApplicationController
 
   def new
     @mailbox = @domain.mailboxes.build
+    add_crumb "New"
 
     respond_to do |format|
       format.html # new.html.erb
@@ -31,10 +32,12 @@ class MailboxesController < ApplicationController
 
   def edit
     @mailbox = @domain.mailboxes.find(params[:id])
+    add_crumb "Edit"
   end
 
   def create
     @mailbox = @domain.mailboxes.build(params[:mailbox])
+    add_crumb "New"
 
     respond_to do |format|
       if @mailbox.save
@@ -49,6 +52,7 @@ class MailboxesController < ApplicationController
 
   def update
     @mailbox = @domain.mailboxes.find(params[:id])
+    add_crumb "Edit"
 
     respond_to do |format|
       if @mailbox.update_attributes(params[:mailbox])
@@ -75,6 +79,12 @@ class MailboxesController < ApplicationController
 
   def get_domain
     @domain = Domain.find(params[:domain_id])
+  end
+
+  def _add_crumbs
+    add_crumb 'Domains', domains_path
+    add_crumb @domain.domain, domain_path(@domain)
+    add_crumb 'Mailboxes', (domain_mailboxes_path(@domain) unless params[:action] == "index")
   end
 
 end

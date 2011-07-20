@@ -1,6 +1,7 @@
 class DomainsController < ApplicationController
-  # GET /domains
-  # GET /domains.xml
+
+  before_filter :_add_crumbs
+
   def index
     @domains = Domain.all
 
@@ -10,10 +11,9 @@ class DomainsController < ApplicationController
     end
   end
 
-  # GET /domains/1
-  # GET /domains/1.xml
   def show
     @domain = Domain.find(params[:id])
+    add_crumb @domain.domain
 
     respond_to do |format|
       format.html # show.html.erb
@@ -21,10 +21,9 @@ class DomainsController < ApplicationController
     end
   end
 
-  # GET /domains/new
-  # GET /domains/new.xml
   def new
     @domain = Domain.new
+    add_crumb 'New'
 
     respond_to do |format|
       format.html # new.html.erb
@@ -32,15 +31,15 @@ class DomainsController < ApplicationController
     end
   end
 
-  # GET /domains/1/edit
   def edit
     @domain = Domain.find(params[:id])
+    add_crumb @domain.domain, domain_path(@domain)
+    add_crumb 'Edit'
   end
 
-  # POST /domains
-  # POST /domains.xml
   def create
     @domain = Domain.new(params[:domain])
+    add_crumb 'New domain'
 
     respond_to do |format|
       if @domain.save
@@ -53,10 +52,10 @@ class DomainsController < ApplicationController
     end
   end
 
-  # PUT /domains/1
-  # PUT /domains/1.xml
   def update
     @domain = Domain.find(params[:id])
+    add_crumb @domain.domain, domain_path(@domain)
+    add_crumb 'Edit'
 
     respond_to do |format|
       if @domain.update_attributes(params[:domain])
@@ -69,8 +68,6 @@ class DomainsController < ApplicationController
     end
   end
 
-  # DELETE /domains/1
-  # DELETE /domains/1.xml
   def destroy
     @domain = Domain.find(params[:id])
     @domain.destroy
@@ -79,5 +76,11 @@ class DomainsController < ApplicationController
       format.html { redirect_to(domains_url) }
       format.xml  { head :ok }
     end
+  end
+
+  private
+
+  def _add_crumbs
+    add_crumb 'Domains', (domains_path unless params[:action] == "index")
   end
 end

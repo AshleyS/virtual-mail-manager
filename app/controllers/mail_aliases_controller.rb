@@ -1,6 +1,6 @@
 class MailAliasesController < ApplicationController
 
-  before_filter :get_domain
+  before_filter :get_domain, :_add_crumbs
   
   def index
     @mail_aliases = @domain.mail_aliases.all
@@ -22,6 +22,7 @@ class MailAliasesController < ApplicationController
 
   def new
     @mail_alias = @domain.mail_aliases.build
+    add_crumb "New"
 
     respond_to do |format|
       format.html # new.html.erb
@@ -31,10 +32,12 @@ class MailAliasesController < ApplicationController
 
   def edit
     @mail_alias = @domain.mail_aliases.find(params[:id])
+    add_crumb "Edit"
   end
 
   def create
     @mail_alias = @domain.mail_aliases.build(params[:mail_alias])
+    add_crumb "New"
 
     respond_to do |format|
       if @mail_alias.save
@@ -49,6 +52,7 @@ class MailAliasesController < ApplicationController
 
   def update
     @mail_alias = @domain.mail_aliases.find(params[:id])
+    add_crumb "Edit"
 
     respond_to do |format|
       if @mail_alias.update_attributes(params[:mail_alias])
@@ -75,6 +79,12 @@ class MailAliasesController < ApplicationController
 
   def get_domain
     @domain = Domain.find(params[:domain_id])
+  end
+
+  def _add_crumbs
+    add_crumb 'Domains', domains_path
+    add_crumb @domain.domain, domain_path(@domain)
+    add_crumb 'Aliases', (domain_mail_aliases_path(@domain) unless params[:action] == "index")
   end
 
 end
