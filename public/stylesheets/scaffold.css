@@ -54,3 +54,41 @@ div.field, div.actions {
   font-size: 12px;
   list-style: square;
 }
+
+#wrapper {
+  width: 640px;
+  margin: 0 auto;
+}
+
+#header {
+  text-align: center;
+}
+
+.breadcrumbs {
+  padding: 4px;
+  border: 1px dashed #cccccc;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid #000000;
+  width: 100%;
+}
+
+table td,
+table th {
+  padding: 2px;
+  text-align: left;
+}
+
+table th {
+  border-bottom: 1px solid #000000;
+}
+
+table tr.result_row.odd {
+  background-color: #eeeeee;
+}
+
+table tr.result_row:hover {
+  background-color: #dddddd;
+}

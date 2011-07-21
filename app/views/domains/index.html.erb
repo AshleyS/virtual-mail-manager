@@ -1,17 +1,21 @@
-<h1>Listing domains</h1>
+<h2>Domains</h2>
+
+<p id="notice"><%= notice %></p>
 
 <table>
   <tr>
     <th>Domain</th>
-    <th></th>
+    <th>Mailboxes</th>
+    <th>Aliases</th>
     <th></th>
     <th></th>
   </tr>
 
 <% @domains.each do |domain| %>
-  <tr>
-    <td><%= domain.domain %></td>
-    <td><%= link_to 'Show', domain %></td>
+  <tr class="result_row<%= cycle(" odd", "") %>">
+    <td><%= link_to domain.domain, domain %></td>
+    <td><%= link_to domain.mailboxes.count, domain_mailboxes_path(domain) %></td>
+    <td><%= link_to domain.mail_aliases.count, domain_mail_aliases_path(domain) %></td>
     <td><%= link_to 'Edit', edit_domain_path(domain) %></td>
     <td><%= link_to 'Destroy', domain, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>

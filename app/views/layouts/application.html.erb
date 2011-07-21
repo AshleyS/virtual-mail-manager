@@ -8,12 +8,17 @@
 </head>
 <body>
 
-<div>
-  
-  <%= render_crumbs %>
-</div>
+    <div id="wrapper">
+      <div id="header">
+        <h1>Virtual Mail Manager</h1>
+      </div>
 
-<%= yield %>
+      <div class="breadcrumbs">
+        <%= render_crumbs %>
+      </div>
+
+      <%= yield %>
+    </div>
 
 </body>
 </html>
