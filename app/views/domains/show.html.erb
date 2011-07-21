@@ -7,7 +7,7 @@
 
 <p>
   <%= link_to pluralize(@domain.mailboxes.size, 'mailbox'), domain_mailboxes_path(@domain) %> |
-  <%= link_to pluralize(@domain.mail_aliases.size, 'aliases'), domain_mail_aliases_path(@domain) %>
+  <%= link_to pluralize(@domain.mail_aliases.size, 'alias'), domain_mail_aliases_path(@domain) %>
 </p>
 
 <p>
