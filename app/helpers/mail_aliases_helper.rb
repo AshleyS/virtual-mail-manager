@@ -1,2 +1,0 @@
-module MailAliasesHelper
-end

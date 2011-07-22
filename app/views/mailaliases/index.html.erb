@@ -1,0 +1,28 @@
+<h2>Aliases</h2>
+
+<p id="notice"><%= notice %></p>
+
+<table>
+  <tr>
+    <th>Source</th>
+    <th>Destination</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @mailaliases.each do |mailalias| %>
+  <tr class="result_row<%= cycle(" odd", "") %>">
+    <td><%= mailalias.source %></td>
+    <td><%= mailalias.destination %></td>
+    <td><%= link_to 'Show', domain_mailalias_path(@domain, mailalias) %></td>
+    <td><%= link_to 'Edit', edit_domain_mailalias_path(@domain, mailalias) %></td>
+    <td><%= link_to 'Destroy', [@domain, mailalias], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Mail alias', new_domain_mailalias_path %><br />
+<%= link_to 'Back to Domains', domains_path %>

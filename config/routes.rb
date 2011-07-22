@@ -3,7 +3,7 @@ VirtualMailManager::Application.routes.draw do
 
   resources :domains do
     resources :mailboxes
-    resources :mail_aliases
+    resources :mailaliases
   end
 
   root :to => "domains#index"

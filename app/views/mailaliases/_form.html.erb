@@ -1,10 +1,10 @@
-<%= form_for [@domain, @mail_alias] do |f| %>
-  <% if @mail_alias.errors.any? %>
+<%= form_for [@domain, @mailalias] do |f| %>
+  <% if @mailalias.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@mail_alias.errors.count, "error") %> prohibited this mail_alias from being saved:</h2>
+      <h2><%= pluralize(@mailalias.errors.count, "error") %> prohibited this mailalias from being saved:</h2>
 
       <ul>
-      <% @mail_alias.errors.full_messages.each do |msg| %>
+      <% @mailalias.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :domain_id %><br />
-    <%= collection_select :mail_alias, :domain_id, Domain.all, :id, :domain %>
+    <%= collection_select :mailalias, :domain_id, Domain.all, :id, :domain %>
   </div>
   <div class="field">
     <%= f.label :source %><br />

@@ -1,6 +1,6 @@
 class CreateMailAliases < ActiveRecord::Migration
   def self.up
-    create_table :mail_aliases do |t|
+    create_table :mailaliases do |t|
       t.integer :domain_id
       t.string :source
       t.string :destination
@@ -10,6 +10,6 @@ class CreateMailAliases < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :mail_aliases
+    drop_table :mailaliases
   end
 end

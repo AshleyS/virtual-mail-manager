@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Domain:</b>
+  <%= @mailalias.domain_id %>
+</p>
+
+<p>
+  <b>Source:</b>
+  <%= @mailalias.source %>
+</p>
+
+<p>
+  <b>Destination:</b>
+  <%= @mailalias.destination %>
+</p>
+
+
+<%= link_to 'Edit', edit_domain_mailalias_path(@domain, @mailalias) %> |
+<%= link_to 'Back', domain_mailaliases_path %>
