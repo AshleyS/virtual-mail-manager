@@ -9,4 +9,12 @@ class Mailbox < ActiveRecord::Base
     self.password = Digest::MD5.hexdigest( self.password )
   end
 
+  def self.search(search)
+    if search
+      where('email LIKE ?', "%#{search}%")
+    else
+      scoped
+    end
+  end
+
 end
