@@ -2,6 +2,13 @@
 
 <p id="notice"><%= notice %></p>
 
+<%= form_tag domain_mailaliases_path, :method => 'get', :id => "mailaliases_search" do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
 <table>
   <tr>
     <th>Source</th>

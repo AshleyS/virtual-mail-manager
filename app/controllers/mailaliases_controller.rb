@@ -3,7 +3,7 @@ class MailaliasesController < ApplicationController
   before_filter :get_domain, :_add_crumbs
   
   def index
-    @mailaliases = @domain.mailaliases.all
+    @mailaliases = @domain.mailaliases.search(params[:search])
 
     respond_to do |format|
       format.html # index.html.erb
