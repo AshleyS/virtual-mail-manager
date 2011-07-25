@@ -111,3 +111,8 @@ table th a.current.desc {
 .pagination {
   margin: 10px 0;
 }
+
+#footer {
+  margin-top: 100px;
+  text-align: center;
+}
