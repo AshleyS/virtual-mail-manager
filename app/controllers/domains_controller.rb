@@ -25,7 +25,7 @@ class DomainsController < ApplicationController
 
   def create
     @domain = Domain.new(params[:domain])
-    add_crumb 'New domain'
+    add_crumb 'New'
 
     if @domain.save
       redirect_to(@domain, :notice => 'Domain was successfully created.')
