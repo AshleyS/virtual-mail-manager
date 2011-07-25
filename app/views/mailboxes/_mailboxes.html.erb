@@ -1,0 +1,20 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+
+<table>
+  <tr>
+    <th><%= sortable "email" %></th>
+    <th><%= sortable "password" %></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @mailboxes.each do |mailbox| %>
+      <tr class="result_row<%= cycle(" odd", "") %>">
+        <td><%= link_to mailbox.email, domain_mailbox_path(@domain, mailbox) %></td>
+        <td><%= mailbox.password %></td>
+        <td><%= link_to 'Edit', edit_domain_mailbox_path(@domain, mailbox) %></td>
+        <td><%= link_to 'Destroy', [@domain, mailbox], :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+  <% end %>
+</table>

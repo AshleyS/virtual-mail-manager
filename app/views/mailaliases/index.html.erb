@@ -3,33 +3,15 @@
 <p id="notice"><%= notice %></p>
 
 <%= form_tag domain_mailaliases_path, :method => 'get', :id => "mailaliases_search" do %>
-  <%= hidden_field_tag :direction, params[:direction] %>
-  <%= hidden_field_tag :sort, params[:sort] %>
   <p>
     <%= text_field_tag :search, params[:search] %>
     <%= submit_tag "Search", :name => nil %>
   </p>
-<% end %>
 
-<table>
-  <tr>
-    <th><%= sortable "source" %></th>
-    <th><%= sortable "destination" %></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @mailaliases.each do |mailalias| %>
-  <tr class="result_row<%= cycle(" odd", "") %>">
-    <td><%= mailalias.source %></td>
-    <td><%= mailalias.destination %></td>
-    <td><%= link_to 'Show', domain_mailalias_path(@domain, mailalias) %></td>
-    <td><%= link_to 'Edit', edit_domain_mailalias_path(@domain, mailalias) %></td>
-    <td><%= link_to 'Destroy', [@domain, mailalias], :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+  <div id="mailaliases">
+    <%= render :partial => 'mailaliases' %>
+  </div>
 <% end %>
-</table>
 
 <br />
 

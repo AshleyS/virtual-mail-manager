@@ -1,0 +1,22 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+
+<table>
+  <tr>
+    <th><%= sortable "domain" %></th>
+    <th>Mailboxes</th>
+    <th>Aliases</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @domains.each do |domain| %>
+      <tr class="result_row<%= cycle(" odd", "") %>">
+        <td><%= link_to domain.domain, domain %></td>
+        <td><%= link_to domain.mailboxes.count, domain_mailboxes_path(domain) %></td>
+        <td><%= link_to domain.mailaliases.count, domain_mailaliases_path(domain) %></td>
+        <td><%= link_to 'Edit', edit_domain_path(domain) %></td>
+        <td><%= link_to 'Destroy', domain, :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+  <% end %>
+</table>

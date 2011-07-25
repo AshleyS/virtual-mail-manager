@@ -5,31 +5,16 @@ class DomainsController < ApplicationController
 
   def index
     @domains = Domain.search(params[:search]).order(sort_column + " " + sort_direction)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @domains }
-    end
   end
 
   def show
     @domain = Domain.find(params[:id])
     add_crumb @domain.domain
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @domain }
-    end
   end
 
   def new
     @domain = Domain.new
     add_crumb 'New'
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @domain }
-    end
   end
 
   def edit
@@ -42,14 +27,10 @@ class DomainsController < ApplicationController
     @domain = Domain.new(params[:domain])
     add_crumb 'New domain'
 
-    respond_to do |format|
-      if @domain.save
-        format.html { redirect_to(@domain, :notice => 'Domain was successfully created.') }
-        format.xml  { render :xml => @domain, :status => :created, :location => @domain }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @domain.errors, :status => :unprocessable_entity }
-      end
+    if @domain.save
+      redirect_to(@domain, :notice => 'Domain was successfully created.')
+    else
+      render :action => "new"
     end
   end
 
@@ -58,14 +39,10 @@ class DomainsController < ApplicationController
     add_crumb @domain.domain, domain_path(@domain)
     add_crumb 'Edit'
 
-    respond_to do |format|
-      if @domain.update_attributes(params[:domain])
-        format.html { redirect_to(@domain, :notice => 'Domain was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @domain.errors, :status => :unprocessable_entity }
-      end
+    if @domain.update_attributes(params[:domain])
+      redirect_to(@domain, :notice => 'Domain was successfully updated.')
+    else
+      render :action => "edit"
     end
   end
 
@@ -73,10 +50,7 @@ class DomainsController < ApplicationController
     @domain = Domain.find(params[:id])
     @domain.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(domains_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to(domains_path, :notice => 'Domain was successfully deleted.')
   end
 
   private
