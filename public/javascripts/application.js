@@ -25,12 +25,12 @@ $(function() {
     $.getScript(this.href);
   });
 
-  $("#mailaliases table th a, #mailaliases table .pagination a").live("click", function(e) {
+  $("#mailaliases table th a, #mailaliases .pagination a").live("click", function(e) {
     e.preventDefault();
     $.getScript(this.href);
   });
 
-  $("#domains table th a, #domains table .pagination a").live("click", function(e) {
+  $("#domains table th a, #domains .pagination a").live("click", function(e) {
     e.preventDefault();
     $.getScript(this.href);
   });
