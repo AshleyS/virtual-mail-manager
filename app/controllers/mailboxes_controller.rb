@@ -1,9 +1,10 @@
 class MailboxesController < ApplicationController
 
+  helper_method :sort_column, :sort_direction
   before_filter :get_domain, :_add_crumbs
 
   def index
-    @mailboxes = @domain.mailboxes.search(params[:search])
+    @mailboxes = @domain.mailboxes.search(params[:search]).order(sort_column + " " + sort_direction)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -85,6 +86,14 @@ class MailboxesController < ApplicationController
     add_crumb 'Domains', domains_path
     add_crumb @domain.domain, domain_path(@domain)
     add_crumb 'Mailboxes', (domain_mailboxes_path(@domain) unless params[:action] == "index")
+  end
+
+  def sort_column
+    Mailbox.column_names.include?(params[:sort]) ? params[:sort] : "email"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 
 end

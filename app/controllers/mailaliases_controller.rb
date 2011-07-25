@@ -1,9 +1,10 @@
 class MailaliasesController < ApplicationController
 
+  helper_method :sort_column, :sort_direction
   before_filter :get_domain, :_add_crumbs
   
   def index
-    @mailaliases = @domain.mailaliases.search(params[:search])
+    @mailaliases = @domain.mailaliases.search(params[:search]).order(sort_column + " " + sort_direction)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -87,4 +88,12 @@ class MailaliasesController < ApplicationController
     add_crumb 'Aliases', (domain_mailaliases_path(@domain) unless params[:action] == "index")
   end
 
+  def sort_column
+    Mailalias.column_names.include?(params[:sort]) ? params[:sort] : "source"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+  
 end

@@ -1,9 +1,10 @@
 class DomainsController < ApplicationController
 
+  helper_method :sort_column, :sort_direction
   before_filter :_add_crumbs
 
   def index
-    @domains = Domain.all
+    @domains = Domain.order(sort_column + " " + sort_direction)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -83,4 +84,13 @@ class DomainsController < ApplicationController
   def _add_crumbs
     add_crumb 'Domains', (domains_path unless params[:action] == "index")
   end
+
+  def sort_column
+    Domain.column_names.include?(params[:sort]) ? params[:sort] : "domain"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+
 end

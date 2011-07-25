@@ -92,3 +92,18 @@ table tr.result_row.odd {
 table tr.result_row:hover {
   background-color: #dddddd;
 }
+
+
+table th a.current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+table th a.current.asc {
+  background-image: url(/images/up_arrow.gif);
+}
+
+table th a.current.desc {
+  background-image: url(/images/down_arrow.gif);
+}
