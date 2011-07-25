@@ -4,7 +4,7 @@ class MailaliasesController < ApplicationController
   before_filter :get_domain, :_add_crumbs
   
   def index
-    @mailaliases = @domain.mailaliases.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 5, :page => params[:page])
+    @mailaliases = @domain.mailaliases.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])
   end
 
   def show

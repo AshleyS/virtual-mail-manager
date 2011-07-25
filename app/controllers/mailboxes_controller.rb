@@ -4,7 +4,7 @@ class MailboxesController < ApplicationController
   before_filter :get_domain, :_add_crumbs
 
   def index
-    @mailboxes = @domain.mailboxes.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 5, :page => params[:page])
+    @mailboxes = @domain.mailboxes.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])
   end
 
   def show
