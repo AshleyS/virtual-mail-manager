@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :auth_only
+  before_filter :auth_only, :_add_crumbs
 
   def index
     @users = User.scoped
@@ -17,6 +17,12 @@ class UsersController < ApplicationController
     else
       render "new"
     end
+  end
+
+  private
+
+  def _add_crumbs
+    add_crumb 'Users', (users_path unless params[:action] == "index")
   end
 
 end
