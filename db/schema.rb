@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110722120810) do
+ActiveRecord::Schema.define(:version => 20110726202123) do
 
   create_table "domains", :force => true do |t|
     t.string   "domain"
@@ -30,6 +30,14 @@ ActiveRecord::Schema.define(:version => 20110722120810) do
     t.integer  "domain_id"
     t.string   "email"
     t.string   "password"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "username"
+    t.string   "password_hash"
+    t.string   "password_salt"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

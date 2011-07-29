@@ -6,12 +6,10 @@ gem 'rails', '3.0.9'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-
 gem 'crummy'
-
 gem 'jquery-rails'
-
 gem 'will_paginate'
+gem "bcrypt-ruby", :require => "bcrypt"
 
 # Use unicorn as the web server
 # gem 'unicorn'

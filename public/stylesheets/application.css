@@ -64,6 +64,29 @@ div.field, div.actions {
   text-align: center;
 }
 
+#navigation {
+  margin-bottom: 10px;
+  background-color: #eeeeee;
+  padding: 6px;
+}
+
+#navigation ul,
+#navigation li {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+#navigation li {
+  padding: 2px 10px 2px 0;
+  margin-right: 10px;
+  list-style-type: none;
+  float: left;
+  border-right: 1px solid #aaaaaa;
+}
+#navigation li:last-child {
+  border-right: 0 none;
+}
+
 .breadcrumbs {
   padding: 4px;
   border: 1px dashed #cccccc;

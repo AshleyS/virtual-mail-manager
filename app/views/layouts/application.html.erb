@@ -13,9 +13,27 @@
         <h1>Virtual Mail Manager</h1>
       </div>
 
-      <div class="breadcrumbs">
-        <%= render_crumbs %>
-      </div>
+      <% if current_user %>
+        <div id="navigation" style="overflow: hidden;">
+          <div id="menu_nav" style="float: left;">
+            <ul>
+              <li><%= link_to "Home", root_path %></li>
+              <li><%= link_to "Domains", domains_path %></li>
+              <li><%= link_to "Users", users_path %></li>
+            </ul>
+          </div>
+
+          <div id="user_nav" style="float: right;">
+              Logged in as <%= current_user.username %>. <%= link_to "Log out", log_out_path %>
+          </div>
+        </div>
+
+        <div class="breadcrumbs">
+          <%= render_crumbs %>
+        </div>
+      <% end %>
+
+      <p id="notice"><%= notice %></p>
 
       <%= yield %>
 
