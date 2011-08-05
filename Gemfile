@@ -11,6 +11,10 @@ gem 'jquery-rails'
 gem 'will_paginate'
 gem "bcrypt-ruby", :require => "bcrypt"
 
+group :production do
+  gem 'mysql2'
+end
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
