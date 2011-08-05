@@ -4,8 +4,7 @@ class DomainsController < ApplicationController
   before_filter :auth_only, :_add_crumbs
 
   def index
-    # @domains = Domain.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])
-    @domains = Domain.scoped.paginate(:per_page => 10, :page => params[:page])
+    @domains = Domain.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])
   end
 
   def show
