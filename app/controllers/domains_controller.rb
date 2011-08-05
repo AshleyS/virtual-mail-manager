@@ -4,12 +4,13 @@ class DomainsController < ApplicationController
   before_filter :auth_only, :_add_crumbs
 
   def index
-    @domains = Domain.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])
+    # @domains = Domain.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])
+    @domains = Domain.scoped.paginate(:per_page => 10, :page => params[:page])
   end
 
   def show
     @domain = Domain.find(params[:id])
-    add_crumb @domain.domain
+    add_crumb @domain.name
   end
 
   def new
@@ -19,7 +20,7 @@ class DomainsController < ApplicationController
 
   def edit
     @domain = Domain.find(params[:id])
-    add_crumb @domain.domain, domain_path(@domain)
+    add_crumb @domain.name, domain_path(@domain)
     add_crumb 'Edit'
   end
 
@@ -36,7 +37,7 @@ class DomainsController < ApplicationController
 
   def update
     @domain = Domain.find(params[:id])
-    add_crumb @domain.domain, domain_path(@domain)
+    add_crumb @domain.name, domain_path(@domain)
     add_crumb 'Edit'
 
     if @domain.update_attributes(params[:domain])

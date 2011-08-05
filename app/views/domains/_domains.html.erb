@@ -12,7 +12,7 @@
 
   <% @domains.each do |domain| %>
       <tr class="result_row<%= cycle(" odd", "") %>">
-        <td><%= link_to domain.domain, domain %></td>
+        <td><%= link_to domain.name, domain %></td>
         <td><%= link_to domain.mailboxes.count, domain_mailboxes_path(domain) %></td>
         <td><%= link_to domain.mailaliases.count, domain_mailaliases_path(domain) %></td>
         <td><%= link_to 'Edit', edit_domain_path(domain) %></td>

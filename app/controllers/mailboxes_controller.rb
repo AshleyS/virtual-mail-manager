@@ -58,7 +58,7 @@ class MailboxesController < ApplicationController
 
   def _add_crumbs
     add_crumb 'Domains', domains_path
-    add_crumb @domain.domain, domain_path(@domain)
+    add_crumb @domain.name, domain_path(@domain)
     add_crumb 'Mailboxes', (domain_mailboxes_path(@domain) unless params[:action] == "index")
   end
 

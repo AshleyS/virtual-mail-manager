@@ -13,11 +13,11 @@
 
   <div class="field">
     <%= f.label :domain_id %><br />
-    <%= collection_select :mailalias, :domain_id, Domain.all, :id, :domain %>
+    <%= collection_select :mailalias, :domain_id, Domain.all, :id, :name %>
   </div>
   <div class="field">
     <%= f.label :source %><br />
-    <%= f.text_field :source %><span>@<%= @domain.domain %></span>
+    <%= f.text_field :source %><span> (Format: address@<%= @domain.name %>)</span>
   </div>
   <div class="field">
     <%= f.label :destination %><br />

@@ -18,10 +18,10 @@ class DomainsControllerTest < ActionController::TestCase
 
   test "should create domain" do
     assert_difference('Domain.count') do
-      post :create, :domain => @domain.attributes
+      post :create, :name => @domain.attributes
     end
 
-    assert_redirected_to domain_path(assigns(:domain))
+    assert_redirected_to domain_path(assigns(:name))
   end
 
   test "should show domain" do
@@ -35,8 +35,8 @@ class DomainsControllerTest < ActionController::TestCase
   end
 
   test "should update domain" do
-    put :update, :id => @domain.to_param, :domain => @domain.attributes
-    assert_redirected_to domain_path(assigns(:domain))
+    put :update, :id => @domain.to_param, :name => @domain.attributes
+    assert_redirected_to domain_path(assigns(:name))
   end
 
   test "should destroy domain" do
