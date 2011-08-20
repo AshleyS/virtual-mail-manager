@@ -1,0 +1,24 @@
+<table>
+  <tr>
+    <th><%= sortable "username" %></th>
+    <th><%= sortable "created_at", "Created at" %></th>
+    <th><%= sortable "updated_at", "Updated at" %></th>
+    <th></th>
+  </tr>
+
+  <% @users.each do |user| %>
+    <tr class="result_row<%= cycle(" odd", "") %>">
+      <td><%= link_to user.username, user_path(user) %></td>
+      <td><%= user.created_at %></td>
+      <td><%= user.updated_at %></td>
+      <td class="actions">
+        <%= link_to image_tag("edit_icon.png"), edit_user_path(user) %>
+        <%= link_to image_tag("delete_icon.png"), user, :confirm => 'Are you sure?', :method => :delete %>
+      </td>
+    </tr>
+  <% end %>
+
+  <tr class="total_row">
+    <td colspan="4">Total users: <%= @users.count %></td>
+  </tr>
+</table>

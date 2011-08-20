@@ -11,10 +11,8 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :domain_id %><br />
-    <%= collection_select :mailalias, :domain_id, Domain.all, :id, :name %>
-  </div>
+  <%= hidden_field :mailalias, :domain_id %>
+
   <div class="field">
     <%= f.label :source %><br />
     <%= f.text_field :source %><span> (Format: address@<%= @domain.name %>)</span>
@@ -24,6 +22,6 @@
     <%= f.text_field :destination %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit %> <%= link_to "Cancel", url_for(:back) %>
   </div>
 <% end %>

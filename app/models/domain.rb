@@ -8,9 +8,17 @@ class Domain < ActiveRecord::Base
 
   def self.search(search)
     if search
-      where('domain LIKE ? ', "%#{search}%")
+      where('name LIKE ? ', "%#{search}%")
     else
       scoped
+    end
+  end
+
+  def deletable?
+    if mailboxes.size == 0 && mailaliases.size == 0 then
+      true
+    else
+      false
     end
   end
 

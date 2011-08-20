@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
 
+  helper_method :sort_column, :sort_direction
   before_filter :auth_only, :_add_crumbs
 
   def index
-    @users = User.scoped
+    @users = User.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])
   end
 
   def show
@@ -25,7 +26,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      redirect_to root_path, :notice => "Account was successfully created."
+      redirect_to users_path, :notice => "Account was successfully created."
     else
       render "new"
     end
@@ -44,16 +45,32 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
-    @user.destroy
+    if User.all.size == 1 then
+      flash[:error] = "At least one user must exist"
+      redirect_to :back
+    elsif params[:id].to_i == current_user.id then
+      flash[:error] = "Can't delete yourself"
+      redirect_to :back
+    else
+      @user = User.find(params[:id])
+      @user.destroy
 
-    redirect_to(users_path, :notice => 'User was successfully deleted.')
+      redirect_to(users_path, :notice => 'User was successfully deleted.')
+    end
   end
 
   private
 
   def _add_crumbs
     add_crumb 'Users', (users_path unless params[:action] == "index")
+  end
+
+  def sort_column
+    Domain.column_names.include?(params[:sort]) ? params[:sort] : "username"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 
 end

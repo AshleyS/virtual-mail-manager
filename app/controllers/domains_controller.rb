@@ -48,9 +48,14 @@ class DomainsController < ApplicationController
 
   def destroy
     @domain = Domain.find(params[:id])
-    @domain.destroy
 
-    redirect_to(domains_path, :notice => 'Domain was successfully deleted.')
+    if @domain.deletable? then
+      @domain.destroy
+      redirect_to(domains_path, :notice => 'Domain was successfully deleted.')
+    else
+      flash[:error] = 'URL is not deletable - please delete mailboxes first'
+      redirect_to :back
+    end
   end
 
   private
@@ -60,7 +65,7 @@ class DomainsController < ApplicationController
   end
 
   def sort_column
-    Domain.column_names.include?(params[:sort]) ? params[:sort] : "domain"
+    Domain.column_names.include?(params[:sort]) ? params[:sort] : "name"
   end
 
   def sort_direction

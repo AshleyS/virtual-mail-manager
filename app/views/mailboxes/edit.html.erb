@@ -1,6 +1,12 @@
-<h1>Editing mailbox</h1>
+<% title "Edit mailbox #{@mailbox.email}" %>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', domain_mailbox_path(@mailbox) %> |
-<%= link_to 'Back', domain_mailboxes_path %>
+<div class="info_block">
+  <div class="info_block_heading">
+    Editing mailbox: <%= @mailbox.email %>
+  </div>
+  <div class="info_block_content">
+    <div class="info_block_content_padding">
+      <%= render 'form' %>
+    </div>
+  </div>
+</div>

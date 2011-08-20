@@ -1,20 +1,22 @@
-<h2>Domains</h2>
+<% title "Domains" %>
 
 <%= form_tag domains_path, :method => 'get', :id => "domains_search" do %>
-  <div style="margin: 10px 0; overflow: hidden;">
-    <div style="float: left; width: 50%;">
-      <%= text_field_tag :search, params[:search] %>
-      <%= submit_tag "Search", :name => nil %>
+  <div class="info_block">
+    <div class="info_block_heading">
+      Listing domains
+      <div style="float: right;">
+        <%= text_field_tag :search, params[:search] %><%= submit_tag "Search", :name => nil %>
+      </div>
     </div>
-    <div style="float: left; width: 50%; text-align: right;">
-      <%= link_to 'New Domain', new_domain_path %>
+    <div class="info_block_content">
+      <div id="domains">
+        <%= render :partial => 'domains' %>
+      </div>
+      <div class="info_block_content_padding">
+          <p><em>Note: You cannot delete domains that contain mailboxes and/or mailaliases</em></p>
+        </div>
     </div>
-  </div>
-
-  <div id="domains">
-    <%= render :partial => 'domains' %>
   </div>
 <% end %>
 
-<br />
-
+<%= link_to 'New Domain', new_domain_path %>

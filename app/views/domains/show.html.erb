@@ -1,14 +1,44 @@
-<p>
-  <b>Domain:</b>
-  <%= @domain.name %>
-</p>
+<% title "Domain #{@domain.name}" %>
+
+<div class="info_block">
+  <div class="info_block_heading">
+    Domain: <%= @domain.name %>
+    <div class="info_block_heading_actions">
+      <%= link_to(image_tag("edit_icon_large.png"), edit_domain_path(@domain)) %>
+      <% if @domain.deletable? then %>
+        <%= link_to image_tag("delete_icon_large.png"), @domain, :confirm => 'Are you sure?', :method => :delete %>
+      <% end %>
+    </div>
+  </div>
+  <div class="info_block_content">
+    <div class="info_block_content_padding">
+      <div style="overflow: hidden;">
+        <div style="float: left; width: 50%;">
+          <p>
+            <strong>Mailboxes:</strong> <%= @domain.mailboxes.size %> / &infin; (<%= link_to "view", domain_mailboxes_path(@domain) %>)
+          </p>
+          <p>
+            <strong>Mailaliases:</strong> <%= @domain.mailaliases.size %> / &infin; (<%= link_to "view", domain_mailaliases_path(@domain) %>)
+          </p>
+        </div>
+        <div style="float: right; width: 50%;">
+          <p>
+            <strong>Created at:</strong> <%= @domain.created_at %>
+          </p>
+          <p>
+            <strong>Updated at:</strong> <%= @domain.updated_at %>
+          </p>
+        </div>
+      </div>
+      <% if @domain.deletable? then %>
+        <div class="notice">
+          <p><em>Note: You cannot delete this domain as it contains mailboxes and/or mailaliases</em></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
 <p>
-  <%= link_to pluralize(@domain.mailboxes.size, 'mailbox'), domain_mailboxes_path(@domain) %> |
-  <%= link_to pluralize(@domain.mailaliases.size, 'alias'), domain_mailaliases_path(@domain) %>
-</p>
-
-<p>
-  <%= link_to 'Edit', edit_domain_path(@domain) %> |
-  <%= link_to 'Back', domains_path %>
+  <%= link_to 'Back to domains', domains_path %>
 </p>

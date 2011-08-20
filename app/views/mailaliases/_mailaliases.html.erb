@@ -5,20 +5,27 @@
   <tr>
     <th><%= sortable "source" %></th>
     <th><%= sortable "destination" %></th>
-    <th></th>
-    <th></th>
+    <th><%= sortable "created_at", "Created at" %></th>
+    <th><%= sortable "updated_at", "Updated at" %></th>
     <th></th>
   </tr>
-
+  
   <% @mailaliases.each do |mailalias| %>
       <tr class="result_row<%= cycle(" odd", "") %>">
-        <td><%= mailalias.source %></td>
-        <td><%= mailalias.destination %></td>
-        <td><%= link_to 'Show', domain_mailalias_path(@domain, mailalias) %></td>
-        <td><%= link_to 'Edit', edit_domain_mailalias_path(@domain, mailalias) %></td>
-        <td><%= link_to 'Destroy', [@domain, mailalias], :confirm => 'Are you sure?', :method => :delete %></td>
+        <td><%= link_to mailalias.source, domain_mailalias_path(@domain, mailalias) %></td>
+        <td><%= link_to mailalias.destination, domain_mailalias_path(@domain, mailalias) %></td>
+        <td><%= mailalias.created_at %></td>
+        <td><%= mailalias.updated_at %></td>
+        <td class="actions">
+          <%= link_to image_tag("edit_icon.png"), edit_domain_mailalias_path(@domain, mailalias) %>
+          <%= link_to image_tag("delete_icon.png"), [@domain, mailalias], :confirm => 'Are you sure?', :method => :delete %>
+        </td>
       </tr>
   <% end %>
+  
+  <tr class="total_row">
+    <td colspan="5">Total mailaliases: <%= @mailaliases.count %></td>
+  </tr>
 </table>
 
 <%= will_paginate @mailaliases %>

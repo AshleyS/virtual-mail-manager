@@ -1,21 +1,20 @@
-<h2>Aliases</h2>
+<% title "Mailalias for #{@domain.name}" %>
 
 <%= form_tag domain_mailaliases_path, :method => 'get', :id => "mailaliases_search" do %>
-  <div style="margin: 10px 0; overflow: hidden;">
-    <div style="float: left; width: 50%;">
-      <%= text_field_tag :search, params[:search] %>
-      <%= submit_tag "Search", :name => nil %>
+  <div class="info_block">
+    <div class="info_block_heading">
+      Mailaliases for <%= @domain.name %>
+      <div style="float: right;">
+        <%= text_field_tag :search, params[:search] %><%= submit_tag "Search", :name => nil %>
+      </div>
     </div>
-    <div style="float: left; width: 50%; text-align: right;">
-      <%= link_to 'New Alias', new_domain_mailalias_path %>
+    <div class="info_block_content">
+      <div id="mailaliases">
+        <%= render :partial => 'mailaliases' %>
+      </div>
     </div>
-  </div>
-
-  <div id="mailaliases">
-    <%= render :partial => 'mailaliases' %>
   </div>
 <% end %>
 
-<br />
-
+<%= link_to 'New Mailalias', new_domain_mailalias_path %> |
 <%= link_to 'Back to Domains', domains_path %>

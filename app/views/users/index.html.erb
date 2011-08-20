@@ -1,23 +1,17 @@
-<h2>Users</h2>
-
-<div style="margin: 10px 0; overflow: hidden;">
-  <div style="text-align: right;">
-    <%= link_to "New user", new_user_path %>
+<%= form_tag users_path, :method => 'get', :id => "users_search" do %>
+  <div class="info_block">
+    <div class="info_block_heading">
+      Users
+      <div style="float: right;">
+        <%= text_field_tag :search, params[:search] %><%= submit_tag "Search", :name => nil %>
+      </div>
+    </div>
+    <div class="info_block_content">
+      <div id="users">
+        <%= render :partial => 'users' %>
+      </div>
+    </div>
   </div>
-</div>
+<% end %>
 
-<table>
-  <tr>
-    <th>ID</th>
-    <th>Username</th>
-  </tr>
-
-  <% @users.each do |user| %>
-      <tr class="result_row<%= cycle(" odd", "") %>">
-        <td><%= user.id %></td>
-        <td><%= user.username %></td>
-      </tr>
-  <% end %>
-</table>
-
-<br />
+<%= link_to "New user", new_user_path %>

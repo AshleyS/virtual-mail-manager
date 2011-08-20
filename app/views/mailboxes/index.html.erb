@@ -1,21 +1,20 @@
-<h2>Mailboxes</h2>
+<% title "Mailboxes for #{@domain.name}" %>
 
 <%= form_tag domain_mailboxes_path, :method => 'get', :id => "mailboxes_search" do %>
-  <div style="margin: 10px 0; overflow: hidden;">
-    <div style="float: left; width: 50%;">
-      <%= text_field_tag :search, params[:search] %>
-      <%= submit_tag "Search", :name => nil %>
+  <div class="info_block">
+    <div class="info_block_heading">
+      Mailboxes for <%= @domain.name %>
+      <div style="float: right;">
+        <%= text_field_tag :search, params[:search] %><%= submit_tag "Search", :name => nil %>
+      </div>
     </div>
-    <div style="float: left; width: 50%; text-align: right;">
-      <%= link_to 'New Mailbox', new_domain_mailbox_path %>
+    <div class="info_block_content">
+      <div id="mailboxes">
+        <%= render :partial => 'mailboxes' %>
+      </div>
     </div>
-  </div>
-
-  <div id="mailboxes">
-    <%= render :partial => 'mailboxes' %>
   </div>
 <% end %>
 
-<br />
-
+<%= link_to 'New Mailbox', new_domain_mailbox_path %> |
 <%= link_to 'Back to Domains', domains_path %>

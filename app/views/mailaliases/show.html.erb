@@ -1,18 +1,35 @@
-<p>
-  <b>Domain:</b>
-  <%= @mailalias.domain_id %>
-</p>
+<% title "Mailalias #{@mailalias.source}" %>
 
-<p>
-  <b>Source:</b>
-  <%= @mailalias.source %>
-</p>
+<div class="info_block">
+  <div class="info_block_heading">
+    Mailalias: <%= @mailalias.source%>
+    <div class="info_block_heading_actions">
+      <%= link_to(image_tag("edit_icon_large.png"), edit_domain_mailalias_path(@domain, @mailalias)) %>
+      <%= link_to image_tag("delete_icon_large.png"), [@domain, @mailalias], :confirm => 'Are you sure?', :method => :delete %>
+    </div>
+  </div>
+  <div class="info_block_content">
+    <div class="info_block_content_padding">
+      <div style="overflow: hidden;">
+        <div style="float: left; width: 50%;">
+          <p>
+            <strong>Source:</strong> <%= @mailalias.source %>
+          </p>
+          <p>
+            <strong>Destination:</strong> <%= @mailalias.destination %>
+          </p>
+        </div>
+        <div style="float: right; width: 50%;">
+          <p>
+            <strong>Created at:</strong> <%= @mailalias.created_at %>
+          </p>
+          <p>
+            <strong>Updated at:</strong> <%= @mailalias.updated_at %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <b>Destination:</b>
-  <%= @mailalias.destination %>
-</p>
-
-
-<%= link_to 'Edit', edit_domain_mailalias_path(@domain, @mailalias) %> |
-<%= link_to 'Back', domain_mailaliases_path %>
+<%= link_to 'Back to mailaliases', domain_mailaliases_path %>

@@ -1,6 +1,12 @@
-<h1>Editing mailalias</h1>
+<% title "Edit mailalias #{@mailalias.source}" %>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', domain_mailalias_path(@mailalias) %> |
-<%= link_to 'Back', domain_mailaliases_path %>
+<div class="info_block">
+  <div class="info_block_heading">
+    Editing Mailalias: <%= @mailalias.source %>
+  </div>
+  <div class="info_block_content">
+    <div class="info_block_content_padding">
+      <%= render 'form' %>
+    </div>
+  </div>
+</div>

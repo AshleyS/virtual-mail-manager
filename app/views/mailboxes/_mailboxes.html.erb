@@ -4,19 +4,26 @@
 <table>
   <tr>
     <th><%= sortable "email" %></th>
-    <th><%= sortable "password" %></th>
-    <th></th>
+    <th><%= sortable "created_at", "Created at" %></th>
+    <th><%= sortable "updated_at", "Updated at" %></th>
     <th></th>
   </tr>
 
   <% @mailboxes.each do |mailbox| %>
       <tr class="result_row<%= cycle(" odd", "") %>">
         <td><%= link_to mailbox.email, domain_mailbox_path(@domain, mailbox) %></td>
-        <td><%= mailbox.password %></td>
-        <td><%= link_to 'Edit', edit_domain_mailbox_path(@domain, mailbox) %></td>
-        <td><%= link_to 'Destroy', [@domain, mailbox], :confirm => 'Are you sure?', :method => :delete %></td>
+        <td><%= mailbox.created_at %></td>
+        <td><%= mailbox.updated_at %></td>
+        <td class="actions">
+          <%= link_to image_tag("edit_icon.png"), edit_domain_mailbox_path(@domain, mailbox) %>
+          <%= link_to image_tag("delete_icon.png"), [@domain, mailbox], :confirm => 'Are you sure?', :method => :delete %>
+        </td>
       </tr>
   <% end %>
+
+  <tr class="total_row">
+    <td colspan="4">Total mailboxes: <%= @mailboxes.count %></td>
+  </tr>
 </table>
 
 <%= will_paginate @mailboxes %>

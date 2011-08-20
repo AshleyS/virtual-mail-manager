@@ -1,18 +1,32 @@
-<p>
-  <b>Domain:</b>
-  <%= @mailbox.domain_id %>
-</p>
+<% title "Mailbox #{@mailbox.email}" %>
 
-<p>
-  <b>Email:</b>
-  <%= @mailbox.email %>
-</p>
+<div class="info_block">
+  <div class="info_block_heading">
+    Mailbox: <%= @mailbox.email%>
+    <div class="info_block_heading_actions">
+      <%= link_to(image_tag("edit_icon_large.png"), edit_domain_mailbox_path(@domain, @mailbox)) %>
+      <%= link_to image_tag("delete_icon_large.png"), [@domain, @mailbox], :confirm => 'Are you sure?', :method => :delete %>
+    </div>
+  </div>
+  <div class="info_block_content">
+    <div class="info_block_content_padding">
+      <div style="overflow: hidden;">
+        <div style="float: left; width: 50%;">
+          <p>
+            <strong>Email:</strong> <%= @mailbox.email%>
+          </p>
+        </div>
+        <div style="float: right; width: 50%;">
+          <p>
+            <strong>Created at:</strong> <%= @mailbox.created_at %>
+          </p>
+          <p>
+            <strong>Updated at:</strong> <%= @mailbox.updated_at %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <b>Password:</b>
-  <%= @mailbox.password %>
-</p>
-
-
-<%= link_to 'Edit', edit_domain_mailbox_path(@domain, @mailbox) %> |
-<%= link_to 'Back', domain_mailboxes_path %>
+<%= link_to 'Back to mailboxes', domain_mailboxes_path %>

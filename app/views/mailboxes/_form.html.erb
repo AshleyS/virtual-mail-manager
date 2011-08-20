@@ -11,19 +11,17 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :domain_id %><br />
-    <%= collection_select :mailbox, :domain_id, Domain.all, :id, :name %>
-  </div>
+  <%= hidden_field :mailbox, :domain_id %>
+
   <div class="field">
     <%= f.label :email %><br />
     <%= f.text_field :email %><span> (Format: address@<%= @domain.name %>)</span>
   </div>
   <div class="field">
     <%= f.label :password %><br />
-    <%= f.text_field :password %>
+    <%= f.password_field :password %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit %> <%= link_to "Cancel", url_for(:back) %>
   </div>
 <% end %>

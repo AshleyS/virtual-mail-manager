@@ -1,23 +1,44 @@
+function do_search( inputId ) {
+
+  $('<img />').attr({
+    'src': '/../images/ajax-loader.gif',
+    'class': 'ajax_load'
+  }).insertBefore($('#search'));
+
+  $.get(
+    $(inputId).attr("action"),
+    $(inputId).serialize(),
+    null,
+    "script"
+  );
+
+}
+
 $(function() {
   $("#mailboxes_search input").attr('autocomplete', 'off');
   $("#mailaliases_search input").attr('autocomplete', 'off');
   $("#domains_search input").attr('autocomplete', 'off');
+  $("#users_search input").attr('autocomplete', 'off');
 
   $("#mailboxes_search input[type='submit']").click(function(e) {
     e.preventDefault();
-    $.get($("#mailboxes_search").attr("action"), $("#mailboxes_search").serialize(), null, "script");
+    do_search("#mailboxes_search")
   });
 
   $("#mailaliases_search input[type='submit']").click(function(e) {
     e.preventDefault();
-    $.get($("#mailaliases_search").attr("action"), $("#mailaliases_search").serialize(), null, "script");
+    do_search("#mailaliases_search")
   });
 
   $("#domains_search input[type='submit']").click(function(e) {
     e.preventDefault();
-    $.get($("#domains_search").attr("action"), $("#domains_search").serialize(), null, "script");
+    do_search("#domains_search")
   });
 
+  $("#users_search input[type='submit']").click(function(e) {
+    e.preventDefault();
+    do_search("#users_search")
+  });
 
 
   $("#mailboxes table th a, #mailboxes .pagination a").live("click", function(e) {
@@ -34,4 +55,17 @@ $(function() {
     e.preventDefault();
     $.getScript(this.href);
   });
+
+  $("#users table th a, #users .pagination a").live("click", function(e) {
+    e.preventDefault();
+    $.getScript(this.href);
+  });
+
+  if ( $('.notification_box').length > 0 ) {
+    $('.notification_box').fadeIn();
+    $('.notification_box_close').click( function() {
+      $('.notification_box').fadeOut();
+    });
+  }
+
 });
