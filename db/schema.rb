@@ -10,12 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110805145243) do
+ActiveRecord::Schema.define(:version => 20110820194916) do
 
   create_table "domains", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "max_mailboxes"
+    t.integer  "max_mailaliases"
   end
 
   create_table "mailaliases", :force => true do |t|
