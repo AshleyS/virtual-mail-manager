@@ -249,9 +249,35 @@ div.field, div.actions {
   font-size: 12px;
 }
 
+.login_button {
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#eee),to(#eeefff));
+  text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+  min-width: 72px;
+  border: 1px solid #dfdfdf;
+  margin-bottom: 8px;
+  margin-left: 8px;
+  -webkit-transition: border-color .218s;
+  font-weight: bold;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  color: #555555;
+  cursor: pointer;
+}
+
+.login_button:hover {
+  box-shadow: 0 0 3px #dfdfdf;
+  -webkit-box-shadow: 0 0 3px #dfdfdf;
+}
+
+.login_button:active {
+  box-shadow: 0 0 5px #ccc;
+  -webkit-box-shadow: 0 0 5px #ccc;
+}
+
 /*#search {*/
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="number"] {
   outline:none;
   transition: all 0.25s ease-in-out;
   -webkit-transition: all 0.25s ease-in-out;
@@ -266,18 +292,24 @@ input[type="password"] {
 
 /*#search:hover {*/
 input[type="text"]:hover,
-input[type="password"]:hover{
+input[type="password"]:hover,
+input[type="number"]:hover {
   opacity: 1;
 }
 
 /*#search:focus {*/
 input[type="text"]:focus,
-input[type="password"]:focus {
+input[type="password"]:focus,
+input[type="number"]:focus {
   box-shadow: 0 0 5px rgba(0, 0, 0, .3);
   -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .3);
   -moz-box-shadow: 0 0 5px rgba(0, 0, 0, .3);
   border: 1px solid #999999;
   opacity: 1;
+}
+
+input[type="number"] {
+  width: 75px;
 }
 
 table {
