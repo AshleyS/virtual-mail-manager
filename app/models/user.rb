@@ -35,4 +35,15 @@ class User < ActiveRecord::Base
     end
   end
 
+  def update_last_login
+    login_time = Time.now
+    logger.debug "login time: " + login_time.to_s
+
+    self.last_login = login_time
+    self.save!
+
+    logger.debug "saved"
+
+  end
+
 end

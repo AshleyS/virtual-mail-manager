@@ -12,6 +12,8 @@ class SessionsController < ApplicationController
   def create
     user = User.authenticate(params[:username], params[:password])
     if user
+      user.update_last_login
+      
       session[:user_id] = user.id
       redirect_to root_path
     else

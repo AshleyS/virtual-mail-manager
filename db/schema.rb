@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110820194916) do
+ActiveRecord::Schema.define(:version => 20110821152029) do
 
   create_table "domains", :force => true do |t|
     t.string   "name"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(:version => 20110820194916) do
     t.string   "password_salt"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "last_login"
   end
 
 end
