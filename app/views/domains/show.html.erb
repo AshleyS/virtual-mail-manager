@@ -14,12 +14,14 @@
     <div class="info_block_content_padding">
       <div style="overflow: hidden;">
         <div style="float: left; width: 50%;">
-          <p>
-            <strong>Mailboxes:</strong> <%= @domain.mailboxes.size %> / <%= @domain.max_mailboxes %> (<%= link_to "view", domain_mailboxes_path(@domain) %>)
-          </p>
-          <p>
-            <strong>Mailaliases:</strong> <%= @domain.mailaliases.size %> / <%= @domain.max_mailaliases %> (<%= link_to "view", domain_mailaliases_path(@domain) %>)
-          </p>
+          <div>
+            <p><strong>Mailboxes:</strong> <%= @domain.mailboxes.size %> / <%= raw infinite_or_number( @domain.max_mailboxes ) %> (<%= link_to "view", domain_mailboxes_path(@domain) %>)</p>
+            <%= raw build_progress_bar( @domain.mailboxes.size, @domain.max_mailboxes ) %>
+          </div>
+          <div>
+            <p><strong>Mailaliases:</strong> <%= @domain.mailaliases.size %> / <%= raw infinite_or_number( @domain.max_mailaliases ) %> (<%= link_to "view", domain_mailaliases_path(@domain) %>)</p>
+            <%= raw build_progress_bar( @domain.mailaliases.size, @domain.max_mailaliases ) %>
+          </div>
         </div>
         <div style="float: right; width: 50%;">
           <p>

@@ -38,4 +38,43 @@ module ApplicationHelper
     nav
   end
 
+  def build_progress_bar(current, max)
+    if max == 0 then
+      percentage = 100
+    else
+      divide = current.to_f / max.to_f
+      percentage = ( divide.to_f * 100 ).to_i
+    end
+
+    colour = determine_colour_from_percentage( percentage )
+
+    content = '
+      <div style="width:125px;padding:2px;background-color:white;border:1px solid #006400;text-align:center;border-radius: 4px">
+        <div style="width:' + percentage.to_s + '%;background-color:' + colour.to_s + ';border-radius: 4px">
+          ' + percentage.to_s + '%
+        </div>
+      </div>
+    '
+
+    content
+  end
+
+  def determine_colour_from_percentage( percentage )
+    if percentage >= 75 then
+      "red"
+    elsif percentage >= 50 then
+      "orange"
+    else
+      "lightgreen"
+    end
+  end
+
+  def infinite_or_number(number)
+    if number == -1 then
+      "&infin;"
+    else
+      number
+    end
+  end
+
 end
