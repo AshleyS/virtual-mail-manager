@@ -7,6 +7,8 @@ class Mailbox < ActiveRecord::Base
 
   before_save :encrypt_password
 
+  set_table_name "virtual_users"
+
   def encrypt_password
     self.password = MailboxesHelper::Password.crypt( self.password )
   end

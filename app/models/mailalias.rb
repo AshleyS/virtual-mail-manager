@@ -5,6 +5,8 @@ class Mailalias < ActiveRecord::Base
 
   attr_accessible :domain_id, :source, :destination
 
+  set_table_name "virtual_aliases"
+
   def self.search(search)
     if search
       where('source LIKE ? OR destination LIKE ?', "%#{search}%", "%#{search}%")
