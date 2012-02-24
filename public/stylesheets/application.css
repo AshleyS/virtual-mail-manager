@@ -372,7 +372,7 @@ table tr:hover td.actions a {
 }
 
 .pagination {
-  margin: 10px 0;
+  margin: 10px 0 0;
 }
 
 .ajax_load {
