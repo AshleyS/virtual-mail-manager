@@ -24,7 +24,7 @@ set :deploy_via, :remote_cache
 
 server "malachite.influentialsoftware.com", :app, :web, :db, :primary => true
 
-set :user, "dev"
+set :user, "ruby"
 set :use_sudo, false
 
 # if you're still using the script/reaper helper you will need
