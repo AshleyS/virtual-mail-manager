@@ -12,23 +12,13 @@ set :scm, :git
 set :repository,  "git://github.com/AshleyS/virtual-mail-manager.git"
 set :branch, "master"
 
-set :deploy_to, "/home/ruby/capistrano"
+set :deploy_to, "/var/www/manage.beyondsl.net"
 set :deploy_via, :remote_cache
-#set :deploy_to, "/var/www/manage.beyondsl.net"
-#set :deploy_via, :export
-
-#role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-#role :app, "your app-server here"                          # This may be the same as your `Web` server
-#role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-#role :db,  "your slave db-server here"
 
 server "malachite.influentialsoftware.com", :app, :web, :db, :primary => true
 
 set :user, "ruby"
 set :use_sudo, false
-
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
 
 # If you are using Passenger mod_rails uncomment this:
 namespace :deploy do
