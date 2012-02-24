@@ -1,27 +1,17 @@
 VirtualMailManager::Application.routes.draw do
+  
+  get 'log_in' => 'sessions#new', :as => 'log_in'
+  post 'log_in' => 'sessions#create'
+  get 'log_out' => 'sessions#destroy', :as => 'log_out'
 
-  #get "sessions/new"
-
-  #get "sessions/create"
-
-  #get "users/new"
-
-  get "log_out" => "sessions#destroy", :as => "log_out"
-  get "log_in" => "sessions#new", :as => "log_in"
-
-  #root :to => "sessions#new"
   root :to => "application#index"
 
   resources :users
-  resources :sessions
 
   resources :domains do
     resources :mailboxes
     resources :mailaliases
   end
-
-  #root :to => "domains#index"
-
 
 
   # The priority is based upon order of creation:

@@ -15,10 +15,10 @@ function do_search( inputId ) {
 }
 
 $(function() {
-  $("#mailboxes_search input").attr('autocomplete', 'off');
-  $("#mailaliases_search input").attr('autocomplete', 'off');
-  $("#domains_search input").attr('autocomplete', 'off');
-  $("#users_search input").attr('autocomplete', 'off');
+  $("#mailboxes_search input[type='text']").attr('autocomplete', 'off');
+  $("#mailaliases_search input[type='text']").attr('autocomplete', 'off');
+  $("#domains_search input[type='text']").attr('autocomplete', 'off');
+  $("#users_search input[type='text']").attr('autocomplete', 'off');
 
   $("#mailboxes_search input[type='submit']").click(function(e) {
     e.preventDefault();
@@ -64,8 +64,13 @@ $(function() {
   if ( $('.notification_box').length > 0 ) {
     $('.notification_box').fadeIn();
     $('.notification_box_close').click( function() {
-      $('.notification_box').fadeOut();
+      closeNotificationBox();
     });
+		setTimeout( closeNotificationBox, 5000 );
   }
+
+	function closeNotificationBox() {
+		$('.notification_box').fadeOut();
+	}
 
 });

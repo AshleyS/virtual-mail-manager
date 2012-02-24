@@ -38,13 +38,21 @@ module ApplicationHelper
     nav
   end
 
-  def build_progress_bar(current, max)
+  def get_percentage(current, max)
     if max == 0 then
       percentage = 100
+    elsif max == -1 then
+      percentage = 0
     else
-      divide = current.to_f / max.to_f
-      percentage = ( divide.to_f * 100 ).to_i
+      divide     = current.to_f / max.to_f
+      percentage = (divide.to_f * 100).to_i
     end
+    percentage
+  end
+
+  def build_progress_bar(current, max)
+    
+    percentage = get_percentage(current, max)
 
     colour = determine_colour_from_percentage( percentage )
 

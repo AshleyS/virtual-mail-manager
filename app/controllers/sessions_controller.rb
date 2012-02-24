@@ -12,15 +12,11 @@ class SessionsController < ApplicationController
   def create
     user = User.authenticate(params[:username], params[:password])
     if user
-      user.update_last_login
-      
       session[:user_id] = user.id
       redirect_to root_path
     else
       flash.now[:error] = "Invalid email/password"
       render "new"
-      #flash[:error] = "Invalid email/password"
-      #redirect_to root_path
     end
   end
 
