@@ -4,7 +4,7 @@ class MailaliasesController < ApplicationController
   before_filter :auth_only, :get_domain, :_add_crumbs
   
   def index
-    @mailaliases = @domain.mailaliases.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])
+    @mailaliases = @domain.mailaliases.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 30, :page => params[:page])
   end
 
   def show
@@ -47,7 +47,7 @@ class MailaliasesController < ApplicationController
     @mailalias = @domain.mailaliases.find(params[:id])
     @mailalias.destroy
 
-    redirect_to(domain_mailalias_path(@domain), :notice => 'Mail alias was successfully deleted.')
+    redirect_to(domain_mailaliases_path(@domain), :notice => 'Mail alias was successfully deleted.')
   end
 
   private

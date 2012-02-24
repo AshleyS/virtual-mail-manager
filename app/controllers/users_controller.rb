@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_filter :auth_only, :_add_crumbs
 
   def index
-    @users = User.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])
+    @users = User.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 30, :page => params[:page])
   end
 
   def show
