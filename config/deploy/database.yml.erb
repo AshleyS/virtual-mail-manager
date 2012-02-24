@@ -11,7 +11,7 @@ test:
   <<: *base
 
 production:
-  adapter: mysql
+  adapter: mysql2
   host: <%= Capistrano::CLI.ui.ask("Enter MySQL hostname: ") %>
   username: <%= Capistrano::CLI.ui.ask("Enter MySQL username: ") %>
   password: <%= Capistrano::CLI.password_prompt("Enter MySQL password: ") %>
