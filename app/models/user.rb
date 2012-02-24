@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
     user = find_by_username(username)
     if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
       # Update the user's last login
-      self.update_last_login
+      user.update_last_login
       user
     else
       nil
