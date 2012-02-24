@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(:version => 20110821152029) do
 
-  create_table "domains", :force => true do |t|
+  create_table "virtual_domains", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(:version => 20110821152029) do
     t.integer  "max_mailaliases"
   end
 
-  create_table "mailaliases", :force => true do |t|
+  create_table "virtual_aliases", :force => true do |t|
     t.integer  "domain_id"
     t.string   "source"
     t.string   "destination"
@@ -28,10 +28,12 @@ ActiveRecord::Schema.define(:version => 20110821152029) do
     t.datetime "updated_at"
   end
 
-  create_table "mailboxes", :force => true do |t|
+  create_table "virtual_users", :force => true do |t|
     t.integer  "domain_id"
     t.string   "email"
     t.string   "password"
+    t.integer  "quota_kb"
+    t.integer  "quota_messages"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
