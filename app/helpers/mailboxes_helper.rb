@@ -18,7 +18,8 @@ module MailboxesHelper
 
       # Crypt a password suitable for use in shadow files
       def crypt( string )
-        string.crypt( self.salt )
+        password = string.crypt( self.salt )
+        ["{MD5-CRYPT}", password].join("")
       end
     end
   end
