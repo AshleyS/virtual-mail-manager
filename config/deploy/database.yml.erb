@@ -2,16 +2,16 @@ base: &base
   adapter: sqlite3
   timeout: 5000
 development:
-  database: #{shared_path}/db/development.sqlite3
+  database: <%= shared_path %>/db/development.sqlite3
   <<: *base
 test:
-  database: #{shared_path}/db/test.sqlite3
+  database: <%= shared_path %>/db/test.sqlite3
   <<: *base
 production:
   adapter: mysql
-  host: #{Capistrano::CLI.ui.ask("Enter MySQL hostname: ")}
-  database: #{Capistrano::CLI.ui.ask("Enter MySQL database: ")}
-  username: #{Capistrano::CLI.ui.ask("Enter MySQL username: ")}
-  password: #{Capistrano::CLI.ui.ask("Enter MySQL password: ")}
+  host: <%= Capistrano::CLI.ui.ask("Enter MySQL hostname: ") %>
+  username: <%= Capistrano::CLI.ui.ask("Enter MySQL username: ") %>
+  password: <%= Capistrano::CLI.password_prompt("Enter MySQL password: ") %>
+  database: <%= Capistrano::CLI.ui.ask("Enter MySQL database name: ") %>
   encoding: utf8
   timeout: 5000
