@@ -204,7 +204,7 @@ div.field, div.actions {
 
 .info_block .info_block_content {
   background-color: #ffffff;
-  padding: 10px 0 5px;
+  padding: 10px 0;
   font-size: 12px;
   -webkit-border-bottom-left-radius: 6px;
   -webkit-border-bottom-right-radius: 6px;
