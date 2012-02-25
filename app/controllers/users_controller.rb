@@ -68,7 +68,8 @@ class UsersController < ApplicationController
   private
 
   def _add_crumbs
-    add_crumb 'Users', (users_path unless params[:action] == "index")
+
+    add_crumb 'Users', (users_path unless params[:action] == "index" || !admin?)
   end
 
   def sort_column
