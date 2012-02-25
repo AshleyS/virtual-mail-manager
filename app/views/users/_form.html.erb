@@ -11,14 +11,38 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
-  </div>
+  <div style="overflow: hidden;">
+    <div style="float: left; margin-right: 35px;">
+      <div class="field">
+        <strong><%= f.label :username %></strong><br />
+        <%= f.text_field :username %>
+      </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
+      <div class="field">
+        <strong><%= f.label :password %></strong><br />
+        <%= f.password_field :password %>
+      </div>
+
+      <% if admin? %>
+        <div class="field">
+          <strong><%= f.label :admin %></strong><br />
+          <%= f.check_box :admin %>
+        </div>
+      <% end %>
+    </div>
+
+    <% if admin? %>
+      <div style="float: left;">
+        <div class="field">
+          <strong>Domains administered</strong><br />
+          <%= hidden_field_tag "user[domain_ids][]", nil %>
+          <% Domain.all.each do |domain| %>
+            <%= check_box_tag "user[domain_ids][]", domain.id, @user.domain_ids.include?(domain.id), id: dom_id(domain) %>
+            <%= label_tag dom_id(domain), domain.name %><br>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
 
   <div class="actions">

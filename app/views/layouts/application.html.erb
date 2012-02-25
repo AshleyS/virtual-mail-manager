@@ -36,7 +36,11 @@
           </div>
 
           <div id="user_nav">
-            Logged in as <%= current_user.username %>. <%= link_to "Log out", log_out_path %>
+            Logged in as <%= link_to current_user.username, edit_user_path(current_user) %>.
+            <% if admin? %>
+              (Admin)
+            <% end %>
+            <%= link_to "Log out", log_out_path %>
           </div>
         </div>
       <% end %>

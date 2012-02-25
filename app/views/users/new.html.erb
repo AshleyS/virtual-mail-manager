@@ -15,18 +15,31 @@
             </ul>
           </div>
         <% end %>
-        <p>
-          <%= f.label :username %><br />
+        
+        <div class="field">
+          <strong><%= f.label :username %></strong><br />
           <%= f.text_field :username %>
-        </p>
-        <p>
-          <%= f.label :password %><br />
+        </div>
+
+        <div class="field">
+          <strong><%= f.label :password %></strong><br />
           <%= f.password_field :password %>
-        </p>
-        <p>
-          <%= f.label :password_confirmation %><br />
+        </div>
+
+        <div class="field">
+          <strong><%= f.label :password_confirmation %></strong><br />
           <%= f.password_field :password_confirmation %>
-        </p>
+        </div>
+
+        <div class="field">
+          <strong>Domains administered</strong><br />
+          <%= hidden_field_tag "user[domain_ids][]", nil %>
+          <% Domain.all.each do |domain| %>
+            <%= check_box_tag "user[domain_ids][]", domain.id, @user.domain_ids.include?(domain.id), id: dom_id(domain) %>
+            <%= label_tag dom_id(domain), domain.name %><br>
+          <% end %>
+        </div>
+
         <p class="actions">
           <%= f.submit %> <%= link_to "Cancel", url_for(:back) %>
         </p>

@@ -2,8 +2,8 @@
   <div class="info_block_heading">
     User: <%= @user.username%>
     <div class="info_block_heading_actions">
-      <%= link_to(image_tag("edit_icon_large.png"), edit_user_path(@user)) %>
-      <%= link_to image_tag("delete_icon_large.png"), @user, :confirm => 'Are you sure?', :method => :delete %>
+      <%= link_to image_tag("edit_icon_large.png"), edit_user_path(@user), :title => "Edit" %>
+      <%= link_to image_tag("delete_icon_large.png"), @user, :confirm => 'Are you sure?', :method => :delete, :title => "Delete" %>
     </div>
   </div>
   <div class="info_block_content">
@@ -11,11 +11,23 @@
       <div style="overflow: hidden;">
         <div style="float: left; width: 50%;">
           <p>
-            <strong>Username:</strong> <%= @user.username%>
+            <strong>Username:</strong> <%= @user.username %>
           </p>
           <p>
-            <strong>Last login:</strong> <%= @user.last_login%>
+            <strong>Admin:</strong> <%= @user.admin %>
           </p>
+          <p>
+            <strong>Domains administered:</strong>
+          </p>
+          <% if @user.domains.count > 0 %>
+            <ul>
+              <% @user.domains.each do |domain| %>
+                <li><%= domain.name %></li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p><em>None</em></p>
+          <% end %>
         </div>
         <div style="float: right; width: 50%;">
           <p>
@@ -23,6 +35,9 @@
           </p>
           <p>
             <strong>Updated at:</strong> <%= @user.updated_at %>
+          </p>
+          <p>
+            <strong>Last login:</strong> <%= @user.last_login %>
           </p>
         </div>
       </div>

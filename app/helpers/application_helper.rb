@@ -25,10 +25,12 @@ module ApplicationHelper
       nav << "<li>" + link_to("Domains", domains_path) + "</li>"
     end
 
-    if params[:controller] == "users" then
-      nav << "<li>" + link_to("Users", users_path, :class => "current") + "</li>"
-    else
-      nav << "<li>" + link_to("Users", users_path) + "</li>"
+    if admin?
+      if params[:controller] == "users" then
+        nav << "<li>" + link_to("Users", users_path, :class => "current") + "</li>"
+      else
+        nav << "<li>" + link_to("Users", users_path) + "</li>"
+      end
     end
 
     nav << "

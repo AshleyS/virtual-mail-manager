@@ -1,6 +1,7 @@
 <table>
   <tr>
     <th><%= sortable "username" %></th>
+    <th><%= sortable "admin" %></th>
     <th><%= sortable "last_login", "Last login" %></th>
     <th><%= sortable "created_at", "Created at" %></th>
     <th></th>
@@ -9,6 +10,7 @@
   <% @users.each do |user| %>
     <tr class="result_row<%= cycle(" odd", "") %>">
       <td><%= link_to user.username, user_path(user) %></td>
+      <td><%= user.admin %></td>
       <td><%= user.last_login %></td>
       <td><%= user.created_at %></td>
       <td class="actions">
@@ -19,6 +21,6 @@
   <% end %>
 
   <tr class="total_row">
-    <td colspan="4">Total users: <%= @users.count %></td>
+    <td colspan="5">Total users: <%= @users.count %></td>
   </tr>
 </table>

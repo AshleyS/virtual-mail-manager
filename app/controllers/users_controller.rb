@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
   helper_method :sort_column, :sort_direction
-  before_filter :auth_only, :_add_crumbs
+  before_filter :_add_crumbs
+  before_filter :admin_only, :except => [:show, :edit, :update]
 
   def index
     @users = User.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 30, :page => params[:page])
@@ -24,7 +25,10 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = User.new
+    @user.accessible = :all if admin?
+    @user.attributes = params[:user]
+
     if @user.save
       redirect_to users_path, :notice => "Account was successfully created."
     else
@@ -36,6 +40,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     add_crumb @user.username, user_path(@user)
     add_crumb 'Edit'
+
+    @user.accessible = :all if admin?
 
     if @user.update_attributes(params[:user])
       redirect_to(@user, :notice => 'Account was successfully updated.')
