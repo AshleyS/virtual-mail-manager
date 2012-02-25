@@ -40,3 +40,5 @@ module VirtualMailManager
     config.filter_parameters += [:password]
   end
 end
+
+APP_VERSION = 1.1

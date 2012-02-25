@@ -384,3 +384,7 @@ table tr:hover td.actions a {
   margin-top: 20px;
   text-align: center;
 }
+
+#footer p {
+    font-size: 10px;
+}
