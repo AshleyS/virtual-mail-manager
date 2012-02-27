@@ -2,6 +2,7 @@ class DomainsController < ApplicationController
 
   helper_method :sort_column, :sort_direction
   before_filter :auth_only, :_add_crumbs
+  before_filter :admin_only, :except => [:index, :show]
 
   def index
     @domains = @current_user.domains.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])

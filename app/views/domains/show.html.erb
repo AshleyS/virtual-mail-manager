@@ -4,9 +4,11 @@
   <div class="info_block_heading">
     Domain: <%= @domain.name %>
     <div class="info_block_heading_actions">
-      <%= link_to(image_tag("edit_icon_large.png"), edit_domain_path(@domain)) %>
-      <% if @domain.deletable? then %>
-        <%= link_to image_tag("delete_icon_large.png"), @domain, :confirm => 'Are you sure?', :method => :delete %>
+      <% if admin? %>
+        <%= link_to(image_tag("edit_icon_large.png"), edit_domain_path(@domain)) %>
+        <% if @domain.deletable? then %>
+          <%= link_to image_tag("delete_icon_large.png"), @domain, :confirm => 'Are you sure?', :method => :delete %>
+        <% end %>
       <% end %>
     </div>
   </div>

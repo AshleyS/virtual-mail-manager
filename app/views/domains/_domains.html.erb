@@ -15,9 +15,11 @@
       <td><%= domain.created_at %></td>
       <td><%= domain.updated_at %></td>
       <td class="actions">
-        <%= link_to image_tag("edit_icon.png"), edit_domain_path(domain) %>
-        <% if domain.deletable? then %>
-          <%= link_to image_tag("delete_icon.png"), domain, :confirm => 'Are you sure?', :method => :delete %>
+        <% if admin? %>
+          <%= link_to image_tag("edit_icon.png"), edit_domain_path(domain) %>
+          <% if domain.deletable? then %>
+            <%= link_to image_tag("delete_icon.png"), domain, :confirm => 'Are you sure?', :method => :delete %>
+          <% end %>
         <% end %>
       </td>
     </tr>
