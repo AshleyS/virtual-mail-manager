@@ -21,7 +21,7 @@
           <p>
             <strong>Domains administered:</strong>
           </p>
-          <% if admin? %>
+          <% if @user.admin? %>
             <p><em>All</em></p>
           <% elsif @user.domains.count > 0 %>
             <ul>
