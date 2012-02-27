@@ -5,11 +5,15 @@ class DomainsController < ApplicationController
   before_filter :admin_only, :except => [:index, :show]
 
   def index
-    @domains = @current_user.domains.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])
+    domains = get_authorised_domains
+
+    @domains = domains.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])
   end
 
   def show
-    @domain = @current_user.domains.find(params[:id])
+    domains = get_authorised_domains
+
+    @domain = domains.find(params[:id])
     add_crumb @domain.name
   end
 
@@ -19,7 +23,10 @@ class DomainsController < ApplicationController
   end
 
   def edit
-    @domain = @current_user.domains.find(params[:id])
+    domains = get_authorised_domains
+
+    @domain = domains.find(params[:id])
+
     add_crumb @domain.name, domain_path(@domain)
     add_crumb 'Edit'
   end
@@ -36,7 +43,10 @@ class DomainsController < ApplicationController
   end
 
   def update
-    @domain = @current_user.domains.find(params[:id])
+    domains = get_authorised_domains
+
+    @domain = domains.find(params[:id])
+
     add_crumb @domain.name, domain_path(@domain)
     add_crumb 'Edit'
 
@@ -48,7 +58,9 @@ class DomainsController < ApplicationController
   end
 
   def destroy
-    @domain = @current_user.domains.find(params[:id])
+    domains = get_authorised_domains
+
+    @domain = domains.find(params[:id])
 
     if @domain.deletable?
       @domain.destroy
@@ -60,6 +72,14 @@ class DomainsController < ApplicationController
   end
 
   private
+
+  def get_authorised_domains
+    if admin?
+      Domain
+    else
+      @current_user.domains
+    end
+  end
 
   def _add_crumbs
     add_crumb 'Domains', (domains_path unless params[:action] == "index")
