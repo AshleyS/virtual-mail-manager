@@ -13,15 +13,21 @@ class SessionsController < ApplicationController
     user = User.authenticate(params[:username], params[:password])
     if user
       session[:user_id] = user.id
+      session[:last_seen] = Time.now
+
+      if params[:remember_me]
+        session[:remember_me] = true
+      end
+
       redirect_to root_path
     else
-      flash.now[:error] = "Invalid email/password"
+      flash.now[:error] = "Invalid username/password"
       render "new"
     end
   end
 
   def destroy
-    session[:user_id] = nil
+    reset_session
     redirect_to root_path
   end
 
