@@ -7,6 +7,7 @@ class Domain < ActiveRecord::Base
 
   validates_presence_of :name, :max_mailboxes, :max_mailaliases
   validates_numericality_of :max_mailboxes, :max_mailaliases
+  validates_uniqueness_of :name
 
   attr_accessible :name, :max_mailboxes, :max_mailaliases
 
