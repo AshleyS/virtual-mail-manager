@@ -41,4 +41,4 @@ module VirtualMailManager
   end
 end
 
-APP_VERSION = 1.1
+APP_VERSION = "1.1.1"
