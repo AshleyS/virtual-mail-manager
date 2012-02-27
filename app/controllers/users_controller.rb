@@ -51,7 +51,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if User.all.size == 1 then
+    if User.all.size == 1
       flash[:error] = "At least one user must exist"
       redirect_to :back
     elsif params[:id].to_i == current_user.id then
