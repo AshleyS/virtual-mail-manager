@@ -73,7 +73,7 @@ class ApplicationController < ActionController::Base
     else
       logger.debug "false"
       flash[:error] = "Permission denied"
-      redirect_to root_path
+      redirect_to :back
     end
   end
 
