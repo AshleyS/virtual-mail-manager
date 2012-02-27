@@ -3,7 +3,9 @@
     User: <%= @user.username%>
     <div class="info_block_heading_actions">
       <%= link_to image_tag("edit_icon_large.png"), edit_user_path(@user), :title => "Edit" %>
-      <%= link_to image_tag("delete_icon_large.png"), @user, :confirm => 'Are you sure?', :method => :delete, :title => "Delete" %>
+      <% if admin? %>
+        <%= link_to image_tag("delete_icon_large.png"), @user, :confirm => 'Are you sure?', :method => :delete, :title => "Delete" %>
+      <% end %>
     </div>
   </div>
   <div class="info_block_content">
