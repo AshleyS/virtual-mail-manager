@@ -43,6 +43,12 @@ class UsersController < ApplicationController
 
     @user.accessible = :all if admin?
 
+    if @current_user.id == @user.id && @current_user.admin? && params[:user][:admin] == "0"
+      flash.now[:error] = "You can't revoke your own admin status"
+      render :action => "edit"
+      return
+    end
+
     if @user.update_attributes(params[:user])
       redirect_to(@user, :notice => 'Account was successfully updated.')
     else
