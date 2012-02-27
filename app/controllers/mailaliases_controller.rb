@@ -53,7 +53,12 @@ class MailaliasesController < ApplicationController
   private
 
   def get_domain
-    @domain = @current_user.domains.find(params[:domain_id])
+    if admin?
+      domain = Domain
+    else
+      domain = @current_user.domains
+    end
+    @domain = domain.find(params[:domain_id])
   end
 
   def _add_crumbs
