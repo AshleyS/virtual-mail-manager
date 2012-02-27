@@ -30,15 +30,23 @@
         </div>
       <% end %>
     </div>
-
+      
     <% if admin? %>
       <div style="float: left;">
         <div class="field">
           <strong>Domains administered</strong><br />
           <%= hidden_field_tag "user[domain_ids][]", nil %>
-          <% Domain.all.each do |domain| %>
-            <%= check_box_tag "user[domain_ids][]", domain.id, @user.domain_ids.include?(domain.id), id: dom_id(domain) %>
-            <%= label_tag dom_id(domain), domain.name %><br>
+
+          <% if @user.admin? %>
+            <% Domain.all.each do |domain| %>
+              <%= check_box_tag "user[domain_ids][]", domain.id, true, id: dom_id(domain), :disabled => :disabled %>
+              <%= label_tag dom_id(domain), domain.name %><br>
+            <% end %>
+          <% else %>
+            <% Domain.all.each do |domain| %>
+              <%= check_box_tag "user[domain_ids][]", domain.id, @user.domain_ids.include?(domain.id), id: dom_id(domain) %>
+              <%= label_tag dom_id(domain), domain.name %><br>
+            <% end %>
           <% end %>
         </div>
       </div>

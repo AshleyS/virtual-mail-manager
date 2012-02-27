@@ -69,8 +69,21 @@ $(function() {
 		setTimeout( closeNotificationBox, 5000 );
   }
 
-	function closeNotificationBox() {
-		$('.notification_box').fadeOut();
-	}
+  function closeNotificationBox() {
+    $('.notification_box').fadeOut();
+  }
+
+  $('#user_admin').click(function() {
+    if ( this.checked ) {
+      //alert('yes');
+      $('input[id^="domain_"]').attr('checked', 'checked');
+      $('input[id^="domain_"]').attr('disabled', 'disabled');
+    }
+    else {
+      //alert('false');
+      $('input[id^="domain_"]').removeAttr('checked');
+      $('input[id^="domain_"]').removeAttr('disabled');
+    }
+  });
 
 });
