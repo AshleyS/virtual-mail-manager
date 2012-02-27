@@ -19,4 +19,6 @@
   </div>
 <% end %>
 
-<%= link_to 'New Domain', new_domain_path %>
+<% if admin? %>
+  <%= link_to 'New Domain', new_domain_path %>
+<% end %>
