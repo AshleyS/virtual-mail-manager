@@ -3,7 +3,7 @@
     <div class="info_block_heading">
       Users
       <div style="float: right;">
-        <%= text_field_tag :search, params[:search] %><%= submit_tag "Search", :name => nil %>
+        <%= text_field_tag :search, session[:search] %><%= submit_tag "Search", :name => nil %>
       </div>
     </div>
     <div class="info_block_content">

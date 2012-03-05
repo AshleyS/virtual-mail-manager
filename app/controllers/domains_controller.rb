@@ -7,7 +7,29 @@ class DomainsController < ApplicationController
   def index
     domains = get_authorised_domains
 
-    @domains = domains.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])
+    if params[:search]
+      session[:search] = params[:search]
+      # Reset page number
+      session[:page] = nil
+    end
+
+    if params[:page]
+      session[:page] = params[:page]
+    end
+
+    @domains = domains.search(session[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => session[:page])
+
+    if @domains.all.count == 0 && session[:page]
+      logger.debug "no results on this page, going back a page"
+      new_page = session[:page].to_i - 1
+      if new_page == 0
+        session[:page] = nil
+      else
+        session[:page] = new_page
+      end
+
+      render :action => index
+    end
   end
 
   def show
@@ -87,11 +109,29 @@ class DomainsController < ApplicationController
   end
 
   def sort_column
-    Domain.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    default_sort = "name"
+    unless params[:sort].nil?
+      session[:sort] = params[:sort]
+    end
+
+    if session[:sort].nil?
+      session[:sort] = default_sort
+    end
+
+    session[:sort] = Domain.column_names.include?(session[:sort]) ? session[:sort] : default_sort
   end
 
   def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    default_direction = "asc"
+    unless params[:direction].nil?
+      session[:direction] = %w[asc desc].include?(params[:direction]) ? params[:direction] : default_direction
+    end
+
+    if session[:direction].nil?
+      session[:direction] = default_direction
+    end
+
+    session[:direction]
   end
 
 end

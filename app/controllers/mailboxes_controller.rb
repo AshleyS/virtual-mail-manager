@@ -13,7 +13,7 @@ class MailboxesController < ApplicationController
       session[:page] = params[:page]
     end
 
-    @mailboxes = @domain.mailboxes.search(session[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 4, :page => session[:page])
+    @mailboxes = @domain.mailboxes.search(session[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 30, :page => session[:page])
 
     if @mailboxes.all.count == 0 && session[:page]
       logger.debug "no results on this page, going back a page"
@@ -99,14 +99,14 @@ class MailboxesController < ApplicationController
   def sort_column
     default_sort = "email"
     unless params[:sort].nil?
-      session[:sort] = Mailbox.column_names.include?(params[:sort]) ? params[:sort] : default_sort
+      session[:sort] = params[:sort]
     end
 
     if session[:sort].nil?
       session[:sort] = default_sort
     end
 
-    session[:sort]
+    session[:sort] = Mailbox.column_names.include?(session[:sort]) ? session[:sort] : default_sort
   end
 
   def sort_direction
