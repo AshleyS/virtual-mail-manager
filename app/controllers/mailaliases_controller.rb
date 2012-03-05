@@ -12,6 +12,11 @@ class MailaliasesController < ApplicationController
   end
 
   def new
+    if @domain.mailaliases.count >= @domain.max_mailaliases
+      flash[:error] = "Max number of mailaliases reached"
+      redirect_to domain_mailaliases_path(@domain)
+    end
+
     @mailalias = @domain.mailaliases.build
     add_crumb "New"
   end

@@ -11,7 +11,7 @@
 
   <% @mailboxes.each do |mailbox| %>
       <tr class="result_row<%= cycle(" odd", "") %>">
-        <td><%= link_to mailbox.email, domain_mailbox_path(@domain, mailbox) %></td>
+        <td><%= link_to [mailbox.email, @domain.name].join("@"), domain_mailbox_path(@domain, mailbox) %></td>
         <td><%= mailbox.created_at %></td>
         <td><%= mailbox.updated_at %></td>
         <td class="actions">

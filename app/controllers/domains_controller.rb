@@ -46,6 +46,7 @@ class DomainsController < ApplicationController
     domains = get_authorised_domains
 
     @domain = domains.find(params[:id])
+    @domain_name = @domain.name
 
     add_crumb @domain.name, domain_path(@domain)
     add_crumb 'Edit'
