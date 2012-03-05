@@ -33,7 +33,7 @@ class MailboxesController < ApplicationController
   end
 
   def new
-    if @domain.mailboxes.count >= @domain.max_mailboxes
+    if @domain.mailboxes.count >= @domain.max_mailboxes && @domain.max_mailboxes > -1
       flash[:error] = "Max number of mailboxes reached"
       redirect_to domain_mailboxes_path(@domain)
     end
@@ -66,7 +66,7 @@ class MailboxesController < ApplicationController
     add_crumb "Edit"
 
     if @mailbox.update_attributes(params[:mailbox])
-      redirect_to(domain_mailbox_path(@domain), :notice => 'Mailbox was successfully updated.')
+      redirect_to(domain_mailbox_path(@domain, @mailbox), :notice => 'Mailbox was successfully updated.')
     else
       render :action => "edit"
     end

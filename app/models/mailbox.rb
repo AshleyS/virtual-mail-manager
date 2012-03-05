@@ -18,7 +18,7 @@ class Mailbox < ActiveRecord::Base
   set_table_name "virtual_users"
 
   # Validation:
-  # Checks whether email address has been added
+  # Checks whether email address contains @domain.coim
   def email_format
     errors.add(:email, "format is invalid") if domain_present
   end

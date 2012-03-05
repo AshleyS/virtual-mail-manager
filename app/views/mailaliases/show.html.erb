@@ -13,7 +13,7 @@
       <div style="overflow: hidden;">
         <div style="float: left; width: 50%;">
           <p>
-            <strong>Source:</strong> <%= @mailalias.source %>
+            <strong>Source:</strong> <%= [@mailalias.source, @mailalias.domain.name].join("@") %>
           </p>
           <p>
             <strong>Destination:</strong> <%= @mailalias.destination %>

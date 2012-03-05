@@ -34,7 +34,7 @@ class MailaliasesController < ApplicationController
   end
 
   def new
-    if @domain.mailaliases.count >= @domain.max_mailaliases
+    if @domain.mailaliases.count >= @domain.max_mailaliases && @domain.max_mailaliases > -1
       flash[:error] = "Max number of mailaliases reached"
       redirect_to domain_mailaliases_path(@domain)
     end

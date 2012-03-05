@@ -12,7 +12,7 @@
   
   <% @mailaliases.each do |mailalias| %>
       <tr class="result_row<%= cycle(" odd", "") %>">
-        <td><%= link_to mailalias.source, domain_mailalias_path(@domain, mailalias) %></td>
+        <td><%= link_to [mailalias.source, mailalias.domain.name].join("@"), domain_mailalias_path(@domain, mailalias) %></td>
         <td><%= link_to mailalias.destination, domain_mailalias_path(@domain, mailalias) %></td>
         <td><%= mailalias.created_at %></td>
         <td><%= mailalias.updated_at %></td>
