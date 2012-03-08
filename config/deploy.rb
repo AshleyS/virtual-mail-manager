@@ -12,12 +12,14 @@ set :scm, :git
 set :repository,  "git://github.com/AshleyS/virtual-mail-manager.git"
 set :branch, "master"
 
-set :deploy_to, "/var/www/manage.beyondsl.net"
+#set :deploy_to, "/var/www/manage.beyondsl.net"
+set :deploy_to, "/var/www/manage"
 set :deploy_via, :remote_cache
 
-server "malachite.influentialsoftware.com", :app, :web, :db, :primary => true
+#server "malachite.influentialsoftware.com", :app, :web, :db, :primary => true
+server "topaz.influentialsoftware.com", :app, :web, :db, :primary => true
 
-set :user, "ruby"
+set :user, "sysadmin"
 set :use_sudo, false
 
 # If you are using Passenger mod_rails uncomment this:
