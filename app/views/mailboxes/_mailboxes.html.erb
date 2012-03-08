@@ -4,14 +4,16 @@
 <table>
   <tr>
     <th><%= sortable "email" %></th>
+    <th><%= sortable "last_login", "Last login" %></th>
     <th><%= sortable "created_at", "Created at" %></th>
-    <th><%= sortable "updated_at", "Updated at" %></th>
+    <th><%= sortable "created_at", "Created at" %></th>
     <th></th>
   </tr>
 
   <% @mailboxes.each do |mailbox| %>
       <tr class="result_row<%= cycle(" odd", "") %>">
         <td><%= link_to [mailbox.email, @domain.name].join("@"), domain_mailbox_path(@domain, mailbox) %></td>
+        <td><%= mailbox.last_login %></td>
         <td><%= mailbox.created_at %></td>
         <td><%= mailbox.updated_at %></td>
         <td class="actions">
@@ -22,7 +24,7 @@
   <% end %>
 
   <tr class="total_row">
-    <td colspan="4">Total mailboxes: <%= @mailboxes.count %></td>
+    <td colspan="5">Total mailboxes: <%= @mailboxes.count %></td>
   </tr>
 </table>
 

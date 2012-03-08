@@ -15,6 +15,9 @@
           <p>
             <strong>Email:</strong> <%= [@mailbox.email, @domain.name].join("@") %>
           </p>
+          <p>
+            <strong>Last login:</strong> <%= @mailbox.last_login %>
+          </p>
         </div>
         <div style="float: right; width: 50%;">
           <p>
