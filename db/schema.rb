@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120308130816) do
+ActiveRecord::Schema.define(:version => 20120308232105) do
 
   create_table "administrations", :force => true do |t|
     t.integer  "user_id"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20120308130816) do
     t.integer  "quota_kb"
     t.integer  "quota_messages"
     t.datetime "last_login"
+    t.integer  "usage_kb",       :default => 0
   end
 
 end

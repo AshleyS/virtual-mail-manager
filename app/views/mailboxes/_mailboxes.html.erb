@@ -5,22 +5,22 @@
   <tr>
     <th><%= sortable "email" %></th>
     <th><%= sortable "last_login", "Last login" %></th>
-    <th><%= sortable "created_at", "Created at" %></th>
-    <th><%= sortable "created_at", "Created at" %></th>
+    <th><%= sortable "quota_kb", "Quota" %></th>
+    <th><%= sortable "usage_kb", "Usage" %></th>
     <th></th>
   </tr>
 
   <% @mailboxes.each do |mailbox| %>
-      <tr class="result_row<%= cycle(" odd", "") %>">
-        <td><%= link_to [mailbox.email, @domain.name].join("@"), domain_mailbox_path(@domain, mailbox) %></td>
-        <td><%= mailbox.last_login %></td>
-        <td><%= mailbox.created_at %></td>
-        <td><%= mailbox.updated_at %></td>
-        <td class="actions">
-          <%= link_to image_tag("edit_icon.png"), edit_domain_mailbox_path(@domain, mailbox) %>
-          <%= link_to image_tag("delete_icon.png"), [@domain, mailbox], :confirm => 'Are you sure?', :method => :delete %>
-        </td>
-      </tr>
+    <tr class="result_row<%= cycle(" odd", "") %>">
+      <td><%= link_to [mailbox.email, @domain.name].join("@"), domain_mailbox_path(@domain, mailbox) %></td>
+      <td><%= mailbox.last_login %></td>
+      <td><%= mailbox.quota_kb %>KB</td>
+      <td><%= mailbox.usage_kb %>KB</td>
+      <td class="actions">
+        <%= link_to image_tag("edit_icon.png"), edit_domain_mailbox_path(@domain, mailbox) %>
+        <%= link_to image_tag("delete_icon.png"), [@domain, mailbox], :confirm => 'Are you sure?', :method => :delete %>
+      </td>
+    </tr>
   <% end %>
 
   <tr class="total_row">

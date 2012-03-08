@@ -18,6 +18,9 @@
           <p>
             <strong>Last login:</strong> <%= @mailbox.last_login %>
           </p>
+          <p>
+            <strong><%= @mailbox.usage_kb %>KB / <%= @mailbox.quota_kb %>KB</strong>
+          </p>
         </div>
         <div style="float: right; width: 50%;">
           <p>
