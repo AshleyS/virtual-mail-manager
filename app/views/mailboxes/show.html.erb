@@ -19,8 +19,9 @@
             <strong>Last login:</strong> <%= @mailbox.last_login %>
           </p>
           <p>
-            <strong><%= @mailbox.usage_kb %>KB / <%= @mailbox.quota_kb %>KB</strong>
+            <strong>Quota / Usage:</strong> <%= @mailbox.usage_kb %>KB / <%= @mailbox.quota_kb %>KB<br />
           </p>
+          <%= raw build_progress_bar( @mailbox.usage_kb, @mailbox.quota_kb ) %>
         </div>
         <div style="float: right; width: 50%;">
           <p>
