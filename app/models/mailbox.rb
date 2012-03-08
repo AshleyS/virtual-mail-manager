@@ -4,7 +4,7 @@ class Mailbox < ActiveRecord::Base
   belongs_to :domain
 
   # Attributes
-  attr_accessible :domain_id, :email, :password
+  attr_accessible :domain_id, :email, :password, :quota_kb
 
   # Callbacks
   before_save :encrypt_password, :append_domain

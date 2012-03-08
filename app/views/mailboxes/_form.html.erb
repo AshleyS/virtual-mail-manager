@@ -21,6 +21,10 @@
     <%= f.label :password %><br />
     <%= f.password_field :password %>
   </div>
+  <div class="field">
+    <%= f.label :quota_kb %><br />
+    <%= f.number_field :quota_kb %>KB
+  </div>
   <div class="actions">
     <%= f.submit %> <%= link_to "Cancel", url_for(:back) %>
   </div>
