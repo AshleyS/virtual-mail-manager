@@ -21,7 +21,7 @@
           <p>
             <strong>Quota / Usage:</strong> <%= @mailbox.usage_kb %>KB / <%= @mailbox.quota_kb %>KB<br />
           </p>
-          <%= raw build_progress_bar( @mailbox.usage_kb, @mailbox.quota_kb ) %>
+          <%= raw build_progress_bar( @mailbox.usage_kb, ( ( @mailbox.quota_kb == 0 ) ? -1 : @mailbox.quota_kb ) ) %>
         </div>
         <div style="float: right; width: 50%;">
           <p>
