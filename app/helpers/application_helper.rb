@@ -52,14 +52,14 @@ module ApplicationHelper
     percentage
   end
 
-  def build_progress_bar(current, max)
+  def build_progress_bar(current, max, style='')
     
     percentage = get_percentage(current, max)
 
     colour = determine_colour_from_percentage( percentage )
 
     content = '
-      <div style="width:125px;padding:2px;background-color:white;border:1px solid #006400;text-align:center;border-radius: 4px">
+      <div style="width:125px;padding:2px;background-color:white;border:1px solid #006400;text-align:center;border-radius:4px;' + style + '">
         <div style="width:' + percentage.to_s + '%;background-color:' + colour.to_s + ';border-radius: 4px">
           ' + percentage.to_s + '%
         </div>

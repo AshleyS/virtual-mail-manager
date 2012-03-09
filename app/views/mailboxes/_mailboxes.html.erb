@@ -14,9 +14,10 @@
     <tr class="result_row<%= cycle(" odd", "") %>">
       <td><%= link_to [mailbox.email, @domain.name].join("@"), domain_mailbox_path(@domain, mailbox) %></td>
       <td><%= mailbox.last_login %></td>
-      <td><%= mailbox.quota_kb %>KB</td>
-      <td><%= mailbox.usage_kb %>KB</td>
+      <td><%= number_to_human_size( mailbox.quota_kb.to_i * 1024 ) %></td>
+      <td><%= number_to_human_size( mailbox.usage_kb.to_i * 1024 ) %></td>
       <td class="actions">
+        <%= raw build_progress_bar( mailbox.usage_kb.to_i, ( ( mailbox.quota_kb.to_i == 0 ) ? -1 : mailbox.quota_kb.to_i ), 'float:left;font-size:10px;line-height:12px;' ) %>
         <%= link_to image_tag("edit_icon.png"), edit_domain_mailbox_path(@domain, mailbox) %>
         <%= link_to image_tag("delete_icon.png"), [@domain, mailbox], :confirm => 'Are you sure?', :method => :delete %>
       </td>
