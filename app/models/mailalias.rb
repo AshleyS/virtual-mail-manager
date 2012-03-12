@@ -38,14 +38,14 @@ class Mailalias < ActiveRecord::Base
 
   def remove_domain
     if domain_present
-      self.source = self.source.gsub(/@[a-z.]*/, '')
+      self.source = self.source.gsub(/@[a-zA-Z0-4\-.]*/, '')
     end
 
     self.source
   end
 
   def domain_present
-    scanner = self.source.scan(/@[a-z.]*/)
+    scanner = self.source.scan(/@[a-zA-Z0-4\-.]*/)
     if scanner.size > 0
       true
     else
