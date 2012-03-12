@@ -62,14 +62,14 @@ class Mailbox < ActiveRecord::Base
 
   def remove_domain
     if domain_present
-      self.email = self.email.gsub(/@[a-z.]*/, '')
+      self.email = self.email.gsub(/@[a-zA-Z0-4\-.]*/, '')
     end
 
     self.email
   end
 
   def domain_present
-    scanner = self.email.scan(/@[a-z.]*/)
+    scanner = self.email.scan(/@[a-zA-Z0-4\-.]*/)
     if scanner.size > 0
       true
     else
