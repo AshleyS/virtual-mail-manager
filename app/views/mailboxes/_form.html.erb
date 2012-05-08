@@ -23,7 +23,7 @@
   </div>
   <div class="field">
     <%= f.label :quota_kb %><br />
-    <%= f.number_field :quota_kb %>KB <spam>&mdash; Enter 0 for unlimited</spam>
+    <%= f.number_field :quota_kb, :value => (@mailbox.quota_kb || @domain.default_mailbox_quota) %>KB <spam>&mdash; Enter 0 for unlimited</spam>
   </div>
   <div class="actions">
     <%= f.submit %> <%= link_to "Cancel", url_for(:back) %>

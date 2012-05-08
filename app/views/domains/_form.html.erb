@@ -25,6 +25,12 @@
     <strong><%= f.label :max_mailaliases %></strong><br />
     <%= f.number_field :max_mailaliases %> <em>Enter -1 for unlimited</em>
   </div>
+
+  <div class="field">
+    <strong><%= f.label :default_mailbox_quota %></strong><br />
+    <%= f.number_field :default_mailbox_quota %> KB
+  </div>
+
   <div class="actions">
     <%= f.submit %> <%= link_to "Cancel", url_for(:back) %>
   </div>
