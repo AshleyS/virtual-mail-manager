@@ -31,7 +31,7 @@
             <%= raw build_progress_bar( @domain.mailaliases.size, @domain.max_mailaliases ) %>
           </div>
           <p>
-              <strong>Default mailbox quota:</strong> <%= @domain.default_mailbox_quota %> KB
+              <strong>Default mailbox quota:</strong> <%= number_to_human_size( @domain.default_mailbox_quota.to_i * 1024 ) %>
           </p>
         </div>
         <div style="float: right; width: 50%;">
