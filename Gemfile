@@ -31,9 +31,11 @@ group :test do
 end
 
 gem 'rspec-rails'
+gem 'thin'
 
 group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'guard-rspec'
+  gem 'launchy'
 end
