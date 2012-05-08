@@ -110,7 +110,7 @@ div.field, div.actions {
 }
 
 #header {
-  background: #DCDCDC url(../header-bg.png) top left repeat-x;
+  background: #DCDCDC url(header-bg.png) top left repeat-x;
   text-align: center;
   height: 88px;
   position: relative;
@@ -209,7 +209,7 @@ div.field, div.actions {
 }
 
 .info_block .info_block_heading {
-  background: url(../gradient-background.png) #dfdfdf 0 0;
+  background: url(gradient-background.png) #dfdfdf 0 0;
   color: #464646;
   font-size: 16px;
   text-shadow: 0 2px 0 #ffffff;
@@ -368,11 +368,11 @@ table th a.current {
 }
 
 table th a.current.asc {
-  background-image: url(../up_arrow.gif);
+  background-image: url(up_arrow.gif);
 }
 
 table th a.current.desc {
-  background-image: url(../down_arrow.gif);
+  background-image: url(down_arrow.gif);
 }
 
 table td.actions {
