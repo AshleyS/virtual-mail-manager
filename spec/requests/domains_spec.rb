@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "GET /domains" do
+describe "Domains" do
   before(:each) do
     visit root_path
     current_path.should eq(log_in_path)
@@ -80,5 +80,23 @@ describe "GET /domains" do
 
     page.should_not have_content("example.com")
     page.should have_content("Total domains: 0")
+  end
+
+  it "should only accept numbers in default mailbox quota" do
+    visit new_domain_path
+    current_path.should eq(new_domain_path)
+
+    fill_in "domain_name", with: "default.mailbox.quota.com"
+    fill_in "domain_max_mailboxes", with: 10
+    fill_in "domain_max_mailaliases", with: 10
+    fill_in "domain_default_mailbox_quota", with: "abc"
+    click_button "Create Domain"
+
+    page.should have_content("Default mailbox quota is not a number")
+
+    fill_in "domain_default_mailbox_quota", with: 2048
+    click_button "Create Domain"
+
+    page.should have_content("Domain was successfully created")
   end
 end
