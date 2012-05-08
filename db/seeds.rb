@@ -15,4 +15,5 @@
 user1 = User.new
 user1.username = "sysadmin"
 user1.password = "welcome"
+user1.admin = true
 user1.save!
