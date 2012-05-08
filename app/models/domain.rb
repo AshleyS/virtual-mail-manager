@@ -11,7 +11,7 @@ class Domain < ActiveRecord::Base
 
   attr_accessible :name, :max_mailboxes, :max_mailaliases
 
-  set_table_name "virtual_domains"
+  self.table_name = "virtual_domains"
 
   def self.search(search)
     if search

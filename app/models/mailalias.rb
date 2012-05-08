@@ -14,7 +14,7 @@ class Mailalias < ActiveRecord::Base
   validates_presence_of :domain_id, :source, :destination
   validate :source_format
 
-  set_table_name "virtual_aliases"
+  self.table_name = "virtual_aliases"
 
   # Validation:
   # Checks whether source email address contains @domain.com

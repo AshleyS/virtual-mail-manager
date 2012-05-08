@@ -15,7 +15,7 @@ class Mailbox < ActiveRecord::Base
   validate :email_format
   validate :email_unique
 
-  set_table_name "virtual_users"
+  self.table_name = "virtual_users"
 
   # Validation:
   # Checks whether email address contains @domain.coim
